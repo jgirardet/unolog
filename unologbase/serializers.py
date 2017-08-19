@@ -1,41 +1,39 @@
-from rest_framework import serializers
-from unologbase.models import Patient
-from string import capwords
 import datetime
+from string import capwords
 
+from rest_framework import serializers
+
+from unologbase.models import Patient
 
 
 class PatientSerializer(serializers.ModelSerializer):
-	"""
-	Serializer of patient model
-	"""
-	class Meta:
+    """
+    Serializer of patient model
+    """
 
-		model = Patient
-		fields =('pk','name', 'firstname', 'birthdate', 'street')
+    class Meta:
 
-	def validate_birthdate(self, value):
-		"""
-		check birthdate not in future
-		"""
-		if value > datetime.date.today():
-			raise serializers.ValidationError("patient can't be born in future Mr Conor")
+        model = Patient
+        fields = ('pk', 'name', 'firstname', 'birthdate', 'street')
 
-		return value
+    def validate_birthdate(self, value):
+        """
+        check birthdate not in future
+        """
+        if value > datetime.date.today():
+            raise serializers.ValidationError(
+                "patient can't be born in future Mr Conor")
 
-	# def create(self, validated_data):
-	# 	"""
-	# 	custom create for PatientSerializer
-	# 	"""
+        return value
 
-	# 	#automatique capwords name and firstanme
-	# 	validated_data['name'] = capwords(validated_data['name'])
-	# 	validated_data['firstname'] = capwords(validated_data['firstname'])
-		
+    # def create(self, validated_data):
+    # 	"""
+    # 	custom create for PatientSerializer
+    # 	"""
 
+    # 	#automatique capwords name and firstanme
+    # 	validated_data['name'] = capwords(validated_data['name'])
+    # 	validated_data['firstname'] = capwords(validated_data['firstname'])
 
-	# 	patient = Patient.objects.create(**validated_data)
-	# 	return patient
-
-
-
+    # 	patient = Patient.objects.create(**validated_data)
+    # 	return patient
