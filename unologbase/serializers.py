@@ -14,7 +14,8 @@ class PatientSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = Patient
-        fields = ('pk', 'name', 'firstname', 'birthdate', 'street')
+        fields = ('pk', 'name', 'firstname', 'birthdate', 'street',
+                  'postalcode', 'city', 'phonenumber', 'email',)
 
     def validate_birthdate(self, value):
         """
@@ -24,6 +25,23 @@ class PatientSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 "patient can't be born in future Mr Conor")
 
+        return value
+
+    def validate_postalcode(self, value):
+        """
+        check postalcode is only numeric
+        """
+        if value and not value.isdigit():
+            raise serializers.ValidationError("postal code must be digit only")
+        return value
+
+    def validate_phonenumber(self, value):
+        """
+        check phone number starts with 0 or +
+        """
+        if value and value[0] not in ['0', '+']:
+            raise serializers.ValidationError(
+                "phone number must starts with 0 or +")
         return value
 
     # def create(self, validated_data):

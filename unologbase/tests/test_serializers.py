@@ -1,51 +1,62 @@
-from unologbase.models import Patient
-from mixer.backend.django import mixer, Mixer
-import pytest
-from unologbase.serializers import PatientSerializer
-from rest_framework.test import (APIClient, APIRequestFactory, force_authenticate)
-from rest_framework.reverse import reverse
 import datetime
-from rest_framework import serializers
 from string import capwords
-import datetime
-# from conftest import apiclient
+
+import pytest
+from mixer.backend.django import Mixer, mixer
+from rest_framework import serializers
+from rest_framework.reverse import reverse
+from rest_framework.test import (APIClient, APIRequestFactory,
+                                 force_authenticate)
+
+from unologbase.models import Patient
+from unologbase.serializers import PatientSerializer
+import random
 
 pytestmark = pytest.mark.django_db
 
 
 
-# pytest.mark.usefixtures('apiclient')
-# pytest.mark.usefixtures('patient_nodb')
 
 class TestPatientSerializer:
-	"""
-	Class fort PatientSerializer testing
-	"""
-	def test_check_birthdate(self):
-		"""
-		check no bithdate later
-		"""
-		d = datetime.date(3000, 1, 1)
-		p = Mixer(commit=False).blend(Patient)
-		p.birthdate = d
-		[p.__dict__.pop(k) for k in ('id', '_state')]
-		s = PatientSerializer(data=p.__dict__)
-		with pytest.raises(serializers.ValidationError):
-			s.is_valid(raise_exception=True), "sould return validation error"
+    """
+    Class fort PatientSerializer testing
+    """
+
+    def test_check_birthdate(self):
+        """
+        check no bithdate later
+        """
+        d = datetime.date(3000, 1, 1)
+        p = Mixer(commit=False).blend(Patient)
+        p.birthdate = d
+        [p.__dict__.pop(k) for k in ('id', '_state')]
+        s = PatientSerializer(data=p.__dict__)
+        with pytest.raises(serializers.ValidationError):
+            s.is_valid(raise_exception=True), "sould return validation error"
+
+    def test_postal_code_max_size(self, patient_nodb):
+        a = patient_nodb
+        a.postalcode = "123456"
+        s = PatientSerializer(data = a.__dict__)
+        with pytest.raises(serializers.ValidationError):
+                s.is_valid(raise_exception=True), " postale code can't be 6 chars"
+
+    def test_postal_code_max_size(self, patient_nodb):
+        a = patient_nodb
+        a.postalcode = "AAAAA"
+        s = PatientSerializer(data = a.__dict__)
+        with pytest.raises(serializers.ValidationError):
+            s.is_valid(raise_exception=True), " postale code can't be chars"
 
 
-	# def test_create_turns_to_capword_name_and_firstname(self, patient_nodb):
-	# 	# p = Mixer(commit=False).blend(Patient)
-	# 	p = patient_nodb
-	# 	p.name = p.name.lower()
-	# 	# p.firstname = p.firstname.lower()
-	# 	# [p.__dict__.pop(k) for k in ('id', '_state')]
-	# 	s = PatientSerializer(data=p.__dict__)
-	# 	s.is_valid()
-	# 	n = s.create(s.validated_data)
-	# 	# assert n.__str__() == capwords(p.firstname+" "+p.name)
-	# 	assert n.__str__() == capwords(p.firstname+" "+p.name)
+    def test_phone_number_is_well_formated(self, patient_nodb):
+        a = patient_nodb
+        a.phonenumber = random.randrange(100000-88000)
+        s = PatientSerializer(data= a.__dict__)
+        with pytest.raises(serializers.ValidationError):
+            s.is_valid(raise_exception=True), " sould start with + or 0"
 
-	def test_fix(self,apiclient):
-		r = apiclient.get('/api')
-		assert r.status_code == 404
+
+    def test_fix(self, apiclient):
+        r = apiclient.get('/api')
+        assert r.status_code == 404

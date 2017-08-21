@@ -1,8 +1,11 @@
+import random
+
 import pytest
+
 from unologbase.models import Patient
 
 
-@pytest.fixture(scope='module', autouse=True)
+@pytest.fixture(scope='session', autouse=True)
 def apiclient():
     """
     DRF apiclient
@@ -11,13 +14,19 @@ def apiclient():
     return APIClient()
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(autouse=True, scope='function')
 def patient_nodb():
     """
     give none persistent data of patient model
+
+    mixer doesn't populate blank fields by dfault
     """
-    from mixer.backend.django import Mixer
+    from mixer.backend.django import Mixer, mixer
     m = Mixer(commit=False)
-    p = m.blend(Patient)
-    [p.__dict__.pop(k) for k in ('id', '_state')]
+    p = m.blend(
+        Patient,
+        street=mixer.FAKE,
+        city=mixer.FAKE,
+        postalcode=str(random.randrange(1, 99999)),
+        phonenumber='0' + str(random.randrange(100000000, 899999999)), )
     return p

@@ -8,31 +8,12 @@ from django.utils import timezone
 # cpitalyze first letter of name
 
 
-class PatientManager(models.Manager):
-    """
-manager for Patient Class
-    """
-
-    def create(self, name, firstname, birthdate):
-        """
-Every new patient is created via this method
-Name : always saved as capword
-Firstname : always saved as capword
-"""
-        patient = Patient(
-            name=capwords(name),
-            firstname=capwords(firstname),
-            birthdate=birthdate, )
-        patient.clean()
-        patient.save()
-        return patient
-
 
 class Patient(models.Model):
     """
-ase class of patient.&
-Require on ly 3 fields : name, firstname, birthdate
-"""
+    ase class of patient.&
+    Require on ly 3 fields : name, firstname, birthdate
+    """
 
     #required Field
     name = models.CharField(max_length=50)
@@ -40,10 +21,11 @@ Require on ly 3 fields : name, firstname, birthdate
     birthdate = models.DateField()
 
     #non required fields
-    street = models.CharField(blank=True, max_length=200)
-    # postalcode = models.IntegerField(blank=True)
-    # city = models.CharField(max_length=200, blank=True)
-    # tel_number = models.IntegerField(blank=True)
+    street = models.CharField(blank=True, max_length=200, default="")
+    postalcode = models.CharField(blank=True, max_length=5, default="")
+    city = models.CharField(max_length=200, blank=True, default="")
+    phonenumber = models.CharField(blank=True, max_length=20, default="")
+    email = models.EmailField(blank=True, max_length=100, default="")
 
     def __str__(self):
         """
@@ -58,5 +40,6 @@ Require on ly 3 fields : name, firstname, birthdate
         """
         self.name = capwords(self.name)
         self.firstname = capwords(self.firstname)
+        self.city = capwords(self.city)
 
         super(Patient, self).save(*args, **kwargs)
