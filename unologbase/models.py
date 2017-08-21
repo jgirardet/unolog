@@ -38,24 +38,24 @@ Require on ly 3 fields : name, firstname, birthdate
     name = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50)
     birthdate = models.DateField()
-    
+
     #non required fields
     street = models.CharField(blank=True, max_length=200)
-    postalcode = models.IntegerField(max_length=5, blank=True)
-    city = models.CharField(max_length=200, blank=True)
-    tel_number = models.IntegerField(blank=True)
+    # postalcode = models.IntegerField(blank=True)
+    # city = models.CharField(max_length=200, blank=True)
+    # tel_number = models.IntegerField(blank=True)
 
     def __str__(self):
         """
-nice printing Firstname Name
-"""
+        nice printing Firstname Name
+        """
         return self.firstname + ' ' + self.name
 
     def save(self, *args, **kwargs):
         """
-customizing save method, adds :
-- fore capwords for name et firstanme
-"""
+        customizing save method, adds :
+        - fore capwords for name et firstanme
+        """
         self.name = capwords(self.name)
         self.firstname = capwords(self.firstname)
 

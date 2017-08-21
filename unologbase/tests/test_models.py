@@ -12,7 +12,7 @@ pytestmark = pytest.mark.django_db
 
 
 class TestPatient:
-""" 
+    """ 
     Class to Test Patient model
 """
 
@@ -35,12 +35,12 @@ ensure name and firstnamein db is capword format
         assert a.name == capwords(a.name)
         assert a.firstname == capwords(a.firstname)
 
-    def test_model_ok_with_only_requiered_field(self):
-        a = Patient(
-            name="momok mok mo",
-            firstname='mokmokmokmo',
-            birthdate=datetime.date.today())
-        b = a.save()
+#     def test_model_ok_with_only_requiered_field(self):
+#         a = Patient(
+#             name="momok mok mo",
+#             firstname='mokmokmokmo',
+#             birthdate=datetime.date.today())
+#         b = a.save()
 
 
     # def test_birhtdate_not_in_future(self):
