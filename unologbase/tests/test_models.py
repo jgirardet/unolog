@@ -5,6 +5,7 @@ import pytest
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from mixer.backend.django import Mixer, mixer
+
 from unologbase.models import Patient
 
 pytestmark = pytest.mark.django_db
@@ -62,7 +63,7 @@ class TestObservation:
     model Observation tesing
     """
 
-    def test_motif_cant_be_blank(self, observation_nodb):
+    def test_str(self, observation_nodb):
         o = observation_nodb
-        o.motif = ""
         o.save()
+        assert o.__str__() == o.motif

@@ -4,8 +4,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 
-
-# cpitalyze first letter of name
+from unologbase.user import UnoUser
 
 
 class Patient(models.Model):
@@ -43,13 +42,14 @@ class Patient(models.Model):
 
         super(Patient, self).save(*args, **kwargs)
 
-
 class BaseActe(models.Model):
     """
     Base Abstract class for for differnets actions
     made by usej
     """
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
@@ -62,4 +62,9 @@ class Observation(BaseActe):
     motif : purpose of the visit. can't be blank.this is the most minimam 
     thing a user schould enter.
     """
-    motif = models.CharField(max_length=20, blank=False)
+    motif = models.CharField(max_length=40, blank=False)
+    body = models.TextField(blank=True)
+
+
+    def __str__(self):
+        return self.motif

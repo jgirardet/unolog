@@ -31,7 +31,9 @@ def patient_nodb():
         street=mixer.FAKE,
         city=mixer.FAKE,
         postalcode=str(random.randrange(1, 99999)),
-        phonenumber='0' + str(random.randrange(100000000, 899999999)), )
+        phonenumber='0' + str(random.randrange(100000000, 899999999)),
+        email = mixer.FAKE,
+        )
     return p
 
 @pytest.fixture(autouse=True, scope='function')
@@ -46,3 +48,5 @@ def observation_nodb(patient_nodb):
             patient = p,
             )
     return o
+
+

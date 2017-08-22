@@ -10,11 +10,23 @@ Un NOuveau LOgiciel de Gestion de patient
 - model base act
   - champs de base
   - liaison en foreignKey
+  - modification 
 - extension de base act
   - observation
   - ordonnance
   - etc...
 - class utilisateur
 
-- [ ] gergergerg
-- [ ] zefzefzefzefez
+
+
+
+## bug divers
+update(niveauqueryset) ne prend pas en charge le save (du model) donc auto
+time et capwors des noms sans effet
+
+
+
+## Grand principes pour la doc
+- chaque élement fils de BaseAct n'appartient qu'à un seul uilisateur pour
+  creation ou modification.
+

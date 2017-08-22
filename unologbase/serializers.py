@@ -3,7 +3,7 @@ from string import capwords
 
 from rest_framework import serializers
 
-from unologbase.models import Patient
+from unologbase.models import Patient, Observation
 
 
 class PatientSerializer(serializers.ModelSerializer):
@@ -55,3 +55,12 @@ class PatientSerializer(serializers.ModelSerializer):
 
     # 	patient = Patient.objects.create(**validated_data)
     # 	return patient
+
+
+class ObservationSerializer(serializers.ModelSerializer):
+    """
+    Observation serializer
+    """
+    class Meta:
+        model = Observation
+        fields = '__all__'
