@@ -5,7 +5,6 @@ import pytest
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from mixer.backend.django import Mixer, mixer
-
 from unologbase.models import Patient
 
 pytestmark = pytest.mark.django_db
@@ -51,7 +50,19 @@ class TestPatient:
 
         assert a == b
 
+
 class TestBaseActe:
     """
     Class for testing abstracted BaseACte
     """
+
+
+class TestObservation:
+    """
+    model Observation tesing
+    """
+
+    def test_motif_cant_be_blank(self, observation_nodb):
+        o = observation_nodb
+        o.motif = ""
+        o.save()

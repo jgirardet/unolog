@@ -60,6 +60,6 @@ class Observation(BaseActe):
     A small text of  user about a patient
 
     motif : purpose of the visit. can't be blank.this is the most minimam 
-    thing a user schould enter
+    thing a user schould enter.
     """
-    motif = models.CharField(max_length=20)
+    motif = models.CharField(max_length=20, blank=False)

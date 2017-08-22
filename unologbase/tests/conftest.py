@@ -2,7 +2,11 @@ import random
 
 import pytest
 
-from unologbase.models import Patient
+from mixer.backend.django import Mixer, mixer
+from unologbase.models import (
+        Patient,
+        Observation,
+        )
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -21,7 +25,6 @@ def patient_nodb():
 
     mixer doesn't populate blank fields by dfault
     """
-    from mixer.backend.django import Mixer, mixer
     m = Mixer(commit=False)
     p = m.blend(
         Patient,
@@ -32,4 +35,14 @@ def patient_nodb():
     return p
 
 @pytest.fixture(autouse=True, scope='function')
-
+def observation_nodb(patient_nodb):
+    """
+    fixture for observation instance
+    """
+    p = patient_nodb
+    p.save()
+    o = Mixer(commit=False).blend(
+            Observation,
+            patient = p,
+            )
+    return o
