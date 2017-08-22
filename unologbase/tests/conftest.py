@@ -30,3 +30,6 @@ def patient_nodb():
         postalcode=str(random.randrange(1, 99999)),
         phonenumber='0' + str(random.randrange(100000000, 899999999)), )
     return p
+
+@pytest.fixture(autouse=True, scope='function')
+

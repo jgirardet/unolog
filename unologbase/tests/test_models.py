@@ -51,11 +51,7 @@ class TestPatient:
 
         assert a == b
 
-    # def test_birhtdate_not_in_future(self):
-    # 	"""
-    # 	not bonr in future
-    # 	"""
-    # 	a = mixer.blend(Patient)
-    # 	a.birthdate = datetime.date(2200, 1,1)
-    # 	with pytest.raises(ValidationError):
-    # 		b = Patient.objects.create(a.name, a.firstname, a.birthdate)
+class TestBaseActe:
+    """
+    Class for testing abstracted BaseACte
+    """

@@ -8,7 +8,6 @@ from django.utils import timezone
 # cpitalyze first letter of name
 
 
-
 class Patient(models.Model):
     """
     ase class of patient.&
@@ -43,3 +42,24 @@ class Patient(models.Model):
         self.city = capwords(self.city)
 
         super(Patient, self).save(*args, **kwargs)
+
+
+class BaseActe(models.Model):
+    """
+    Base Abstract class for for differnets actions
+    made by usej
+    """
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+
+    class Meta:
+        abstract = True
+
+
+class Observation(BaseActe):
+    """
+    A small text of  user about a patient
+
+    motif : purpose of the visit. can't be blank.this is the most minimam 
+    thing a user schould enter
+    """
+    motif = models.CharField(max_length=20)
