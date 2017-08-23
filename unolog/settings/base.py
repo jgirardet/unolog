@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 #change default user
-AUTH_USER_MODEL = 'unologbase.UnoUser'
+AUTH_USER_MODEL = 'unousers.UnoUser'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'unologbase',
+    'unousers',
     'django_extensions',
 ]
 
