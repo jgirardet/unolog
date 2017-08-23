@@ -34,25 +34,23 @@ class TestPatientSerializer:
         with pytest.raises(serializers.ValidationError):
             s.is_valid(raise_exception=True), "sould return validation error"
 
-    def test_postal_code_max_size(self, patient_nodb):
-        a = patient_nodb
-        a.postalcode = "123456"
-        s = PatientSerializer(data = a.__dict__)
+    def test_postal_code_max_size(self, patient_dict):
+        patient_dict['postalcode'] = "123456"
+        s = PatientSerializer(data = patient_dict)
         with pytest.raises(serializers.ValidationError):
                 s.is_valid(raise_exception=True), " postale code can't be 6 chars"
 
-    def test_postal_code_max_size(self, patient_nodb):
-        a = patient_nodb
-        a.postalcode = "AAAAA"
-        s = PatientSerializer(data = a.__dict__)
+    def test_postal_code_max_size(self, patient_dict):
+        patient_dict['postalcode']= "AAAAA"
+        s = PatientSerializer(data = patient_dict)
         with pytest.raises(serializers.ValidationError):
             s.is_valid(raise_exception=True), " postale code can't be chars"
 
 
-    def test_phone_number_is_well_formated(self, patient_nodb):
-        a = patient_nodb
-        a.phonenumber = random.randrange(100000-88000)
-        s = PatientSerializer(data= a.__dict__)
+    def test_phone_number_is_well_formated(self, patient_dict):
+        a = patient_dict
+        a['phonenumber'] = random.randrange(100000-88000)
+        s = PatientSerializer(data= a)
         with pytest.raises(serializers.ValidationError):
             s.is_valid(raise_exception=True), " sould start with + or 0"
 

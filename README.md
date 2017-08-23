@@ -29,4 +29,5 @@ time et capwors des noms sans effet
 ## Grand principes pour la doc
 - chaque élement fils de BaseAct n'appartient qu'à un seul uilisateur pour
   creation ou modification.
+_ on ne sauve rien sans passer par objects create ou update
 

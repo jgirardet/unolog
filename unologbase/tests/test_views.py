@@ -33,15 +33,14 @@ Base classe fo testing patient views
         ser = PatientSerializer(patients, many=True)
         assert resp.data == ser.data
 
-    def test_response_create_patient(self, apiclient, patient_nodb):
+    def test_response_create_patient(self, apiclient, patient_dict):
 
-        pa = patient_nodb
-        [pa.__dict__.pop(k) for k in ('id', '_state')]
+        pa = patient_dict
 
         resp = apiclient.post(
-            reverse('patient-list'), data=pa.__dict__, format='json')
+            reverse('patient-list'), data=pa, format='json')
         # import ipdb; ipdb.set_trace()
         p = Patient.objects.get(pk=resp.data['pk'])
         [p.__dict__.pop(k) for k in ('id', '_state')]
-        assert p.__dict__ == patient_nodb.__dict__
+        assert p.__dict__ == pa
         assert resp.status_code == status.HTTP_201_CREATED

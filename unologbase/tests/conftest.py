@@ -19,7 +19,7 @@ def apiclient():
 
 
 @pytest.fixture(autouse=True, scope='function')
-def patient_nodb():
+def patient_dict():
     """
     give none persistent data of patient model
 
@@ -34,15 +34,17 @@ def patient_nodb():
         phonenumber='0' + str(random.randrange(100000000, 899999999)),
         email = mixer.FAKE,
         )
-    return p
+
+    p.__dict__.pop('_state')
+    p.__dict__.pop('id')
+    return p.__dict__
 
 @pytest.fixture(autouse=True, scope='function')
-def observation_nodb(patient_nodb):
+def observation_nodb(patient_dict):
     """
     fixture for observation instance
     """
-    p = patient_nodb
-    p.save()
+    p = Patient.objects.create(**patient_dict)
     o = Mixer(commit=False).blend(
             Observation,
             patient = p,
