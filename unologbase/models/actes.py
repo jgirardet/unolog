@@ -1,8 +1,5 @@
 from django.db import models
-
-from django.contrib.auth import get_user_model
-User = get_user_model()
-
+from django.conf import settings
 
 
 class BaseActeManager(models.Manager):
@@ -11,8 +8,8 @@ class BaseActeManager(models.Manager):
     """
 
     def create(self, **kwargs):
-        #recall base create
-        return super(PatientManager, self).create(**kwargs)
+        # recall base create
+        return super(BaseActeManager, self).create(**kwargs)
 
 
 class BaseActe(models.Model):
@@ -23,7 +20,8 @@ class BaseActe(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    # owner = models.ForeignKey('User', on_delete=models.PROTECT)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              on_delete=models.PROTECT)
 
     class Meta:
         abstract = True

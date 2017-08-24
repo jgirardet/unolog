@@ -10,14 +10,16 @@ from unologbase.models import Patient
 
 pytestmark = pytest.mark.django_db
 
+# @pytest.mark.usefixtures('patient_dict')
 
- # @pytest.mark.usefixtures('patient_dict')
+
 class TestPatient:
     """
     Class to Test Patient model
     """
-    
-    attrs = ( 'name','firstname','city' )
+
+    attrs = ('name', 'firstname', 'city')
+
     def test_string(self, patient_dict):
         """
         test autoput of str
@@ -38,22 +40,22 @@ class TestPatient:
             d[i] = d[i].lower()
         b = Patient.objects.create(**d)
         for i in attrs:
-            assert getattr(b,i) == capwords(d[i])
+            assert getattr(b, i) == capwords(d[i])
 
-    def test_fileds_with_capwords_at_update(self,patient_dict):
+    def test_fileds_with_capwords_at_update(self, patient_dict):
         b = Patient.objects.create(**patient_dict)
-:        for i in self.attrs:
-            b.__dict__[i] = getattr(b,i).lower()
+        for i in self.attrs:
+            b.__dict__[i] = getattr(b, i).lower()
         b.save()
         for i in self.attrs:
-            assert getattr(b,i) == capwords(patient_dict[i])
+            assert getattr(b, i) == capwords(patient_dict[i])
 
     def test_instance_update_capwords(self, patient_dict):
         b = Patient.objects.create(**patient_dict)
         a = "mkokmokmokmok"
-        b.name =  a
+        b.name = a
         b.save()
-        assert b.name ==  capwords(a)
+        assert b.name == capwords(a)
 
     def test_blank_true_for_non_required_fields(self):
         """
@@ -64,5 +66,3 @@ class TestPatient:
         b = Patient.objects.get(id=a.id)
 
         assert a == b
-
-

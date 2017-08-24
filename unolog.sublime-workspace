@@ -3,25 +3,33 @@
 	{
 		"selected_items":
 		[
+			[
+				"pill",
+				"Pillow"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"contents": "\"\"\":git\nhere we import all models\n\"\"\"\nfrom django.db import models\n\nfrom .patients import Patient\nfrom .actes import Observation\nfrom .users import UnoUser\n\n\na = \"mokmo\"\n\n\nsdf = \"mokmok\"\n\n\nddazdazd = \"mokmok\"\nefzef = \"omkmok\"\ne = 'mok'\n\n\ndef mokmvzef(zef):\n    pass",
 			"file": "unologbase/mvdvodels.py",
+			"file_size": 266,
+			"file_write_time": 131480381593461431,
 			"settings":
 			{
-				"buffer_size": 152,
-				"encoding": "UTF-8",
+				"buffer_size": 265,
 				"line_ending": "Unix"
 			}
 		},
 		{
+			"contents": "from string import capwords\nfrom django.db import models\n\n\nCAPWORDS_ATTRS = ('name', 'firstname', 'city')\n\n\nclass PatientManager(models.Manager):\n    \"\"\"\n    custum patient manger to modifie create and update\n    \"\"\"\n    attrs = CAPWORDS_ATTRS\n    # paremeter to capwords\n\n    # def create_patient(self, name=None, firstname=None, birthdate=None):\n    #     \"\"\"\n    #     every patient creatient must use this\n    #     \"\"\"\n    #     if not name:\n    #         raise ValueError('Must Include a name when adding a Patient')\n    #     if not firstname:\n    #         raise ValueError('Must Include a firstname when adding a Patient')\n    #     if not birthdate:\n    #         raise ValueError('Must Include a birthdate when adding a Patient')\n\n    #     patient = self.model(\n    #             name = name,\n    #             firstname=  firstname,\n    #             birthdate = birthdate\n    #             )\n\n    #     print('hello')\n    #     patient.save(using=self.db)\n    #     return patient\n\n    def create(self, **kwargs):\n        \"\"\"\n        enhancement\n        \"\"\"\n        # capwors certain fields\n        for i in self.attrs:\n            kwargs[i] = capwords(kwargs[i])\n\n        # recall base create\n        return super(PatientManager, self).create(**kwargs)\n\n\nclass Patient(models.Model):\n    \"\"\"\n    ase class of patient.&\n    Require on ly 3 fields : name, firstname, birthdate\n    \"\"\"\n    attrs = CAPWORDS_ATTRS\n    # required Field\n    name = models.CharField(max_length=50)\n    firstname = models.CharField(max_length=50)\n    birthdate = models.DateField()\n\n    # non required fields\n    street = models.CharField(blank=True, max_length=200, default=\"\")\n    postalcode = models.CharField(blank=True, max_length=5, default=\"\")\n    city = models.CharField(max_length=200, blank=True, default=\"\")\n    phonenumber = models.CharField(blank=True, max_length=20, default=\"\")\n    email = models.EmailField(blank=True, max_length=100, default=\"\")\n\n    objects = PatientManager()\n\n    def __str__(self):\n        \"\"\"\n        nice printing Firstname Name\n        \"\"\"\n        return self.firstname + ' ' + self.name\n\n    def save(self, *args, **kwargs):\n        \"\"\"\n        customizing save method, adds :\n        - fore capwords for name et firstanme\n        \"\"\"\n        for i in self.attrs:\n            setattr(self, i, capwords(getattr(self, i)))\n\n        super(Patient, self).save(*args, **kwargs)\n",
 			"file": "unologbase/models/patients.py",
+			"file_size": 2404,
+			"file_write_time": 131480387143883626,
 			"settings":
 			{
-				"buffer_size": 2408,
-				"encoding": "UTF-8",
+				"buffer_size": 2404,
 				"line_ending": "Unix"
 			}
 		},
@@ -29,24 +37,7 @@
 			"file": "unolog.sublime-project",
 			"settings":
 			{
-				"buffer_size": 355,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/jimmy/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 20801,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 0,
+				"buffer_size": 892,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -59,10 +50,86 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 92.0,
-		"last_filter": "instal",
+		"height": 392.0,
+		"last_filter": "Django:",
 		"selected_items":
 		[
+			[
+				"Django:",
+				"Django: Run Server"
+			],
+			[
+				"Django:server",
+				"Django: Run Server"
+			],
+			[
+				"Django: Set ",
+				"Django: Set Virtual Environment"
+			],
+			[
+				"Django:ser",
+				"Django: Run Server"
+			],
+			[
+				"Django: ",
+				"Django: Shell"
+			],
+			[
+				"Django: cus",
+				"Django: Custom Command"
+			],
+			[
+				"djan cus",
+				"Django: Run Custom Server"
+			],
+			[
+				"djan cu",
+				"Django: Run Custom Server"
+			],
+			[
+				"django: ruen",
+				"Django: Run Custom Server"
+			],
+			[
+				"djan ru",
+				"Django: Run Server"
+			],
+			[
+				"Djan",
+				"Django: Run Server"
+			],
+			[
+				"django",
+				"Django: Set Virtual Environment"
+			],
+			[
+				"django reun",
+				"Django: Set Virtual Environment"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"git pus",
+				"Git: Push"
+			],
+			[
+				"git: qui",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git add",
+				"Git: Add All"
+			],
+			[
+				"git add .",
+				"Git: Add..."
+			],
 			[
 				"instal",
 				"Package Control: Install Package"
@@ -72,15 +139,11 @@
 				"Package Control: Remove Package"
 			],
 			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
 				"packe",
 				"Package Control: List Packages"
 			]
 		],
-		"width": 449.0
+		"width": 458.0
 	},
 	"console":
 	{
@@ -100,13 +163,19 @@
 	},
 	"expanded_folders":
 	[
-		"/home/jimmy/git/unolog",
-		"/home/jimmy/git/unolog/unologbase",
-		"/home/jimmy/git/unolog/unologbase/models"
+		"/home/jimmy/git/unolog"
 	],
 	"file_history":
 	[
-		"/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings"
+		"/home/jimmy/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+		"/home/jimmy/git/unolog/requirements.txt",
+		"/home/jimmy/git/unolog/unologbase/tests/test_patients.py",
+		"/usr/lib/python3.5/string.py",
+		"/home/jimmy/git/unolog/patient.py",
+		"/home/jimmy/git/unolog/unousers/models.py",
+		"/home/jimmy/git/unolog/unologbase/models/patients.py",
+		"/home/jimmy/git/unolog/venv/lib/python3.5/site-packages/django/db/models/manager.py"
 	],
 	"find":
 	{
@@ -142,7 +211,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -151,26 +220,38 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 152,
+						"buffer_size": 265,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								152,
-								152
+								265,
+								265
 							]
 						],
 						"settings":
 						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"spell_check": false,
 							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -179,15 +260,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2408,
+						"buffer_size": 2404,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								63,
-								63
+								107,
+								107
 							]
 						],
 						"settings":
@@ -195,16 +276,8 @@
 							"auto_complete_triggers":
 							[
 								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
 									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
+									"selector": "source.python - string - comment - constant.numeric"
 								},
 								{
 									"characters": ".",
@@ -220,10 +293,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 45.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -232,15 +305,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 355,
+						"buffer_size": 892,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								348,
-								348
+								828,
+								828
 							]
 						],
 						"settings":
@@ -252,72 +325,9 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/home/jimmy/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 20801,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 270.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				}
-			]
-		},
-		{
-			"sheets":
-			[
 			]
 		}
 	],
@@ -327,7 +337,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -338,18 +348,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -359,9 +362,17 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 250.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 100.0
 	},
 	"pinned_build_system": "Anaconda Python Builder",
 	"project": "unolog.sublime-project",
@@ -376,6 +387,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"requier",
+				"requirements.txt"
+			],
+			[
+				"testpa",
+				"unologbase/tests/test_patients.py"
+			]
 		],
 		"width": 0.0
 	},
@@ -390,22 +409,22 @@
 	},
 	"select_symbol":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 575.0
 	},
 	"selected_group": 0,
 	"settings":
 	{
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 203.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

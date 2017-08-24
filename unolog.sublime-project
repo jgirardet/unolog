@@ -22,5 +22,8 @@
 		"anaconda_linting_behaviour": "load-save",
 		"pep8_ignore":["E501"],
 		"auto_formatting": true,
-	}
+	},
+	
 }
+
+
