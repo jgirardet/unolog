@@ -42,7 +42,7 @@ class TestPatient:
 
     def test_fileds_with_capwords_at_update(self,patient_dict):
         b = Patient.objects.create(**patient_dict)
-        for i in self.attrs:
+:        for i in self.attrs:
             b.__dict__[i] = getattr(b,i).lower()
         b.save()
         for i in self.attrs:

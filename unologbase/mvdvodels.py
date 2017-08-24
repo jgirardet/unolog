@@ -7,5 +7,17 @@ from .patients import Patient
 from .actes import Observation
 from .users import UnoUser
 
-from django.contrib.auth import get_user_model
-User = get_user_model()
+
+a = "mokmo"
+
+
+sdf = "mokmok"
+
+
+ddazdazd = "mokmok"
+efzef = "omkmok"
+e = 'mok'
+
+
+def mokmvzef(zef):
+    pass
