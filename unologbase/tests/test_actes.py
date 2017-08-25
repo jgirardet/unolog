@@ -10,7 +10,7 @@ class TestObservation:
     model Observation tesing
     """
 
-    def test_str(self, observation_nodb):
-        o = observation_nodb
-        o.save()
-        assert o.__str__() == o.motif
+    # def test_str(self, observation_nodb):
+    #     o = observation_nodb
+    #     o.save()
+    #     assert o.__str__() == o.motif

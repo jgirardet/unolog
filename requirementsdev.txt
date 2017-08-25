@@ -1,5 +1,0 @@
-django-extensions
-ipdb
-ipython
-werkzeug
-jedi
