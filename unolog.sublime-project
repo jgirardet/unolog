@@ -5,7 +5,7 @@
 			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
 			"name": "Anaconda Python Builder",
 			"selector": "source.python",
-			"shell_cmd": "\"/bin/python\" -u \"$file\""
+			"shell_cmd": "\"/home/jim/.env/unolog-7lshxDZs/bin/python\" -u \"$file\""
 		}
 	],
 	"folders":
@@ -16,14 +16,11 @@
 	],
 	"settings":
 	{
-		"anaconda_linter_phantoms": true,
-		"anaconda_linting_behaviour": "load-save",
-		"auto_formatting": true,
-		"pep8_ignore":
-		[
-			"E501"
-		],
-		"python_interpreter": "$VIRTUAL_ENV/bin/python",
-		"test_command": "pytest"
+		"python_fiximports":
+		{
+			"autofix_on_save": true
+		},
+		"python_interpreter": "/home/jim/.env/unolog-7lshxDZs/bin/python",
+		"test_command": "/home/jim/.env/unolog-7lshxDZs/bin/pytest"
 	}
 }
