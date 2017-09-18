@@ -1,4 +1,5 @@
 import datetime
+import random
 from string import capwords
 
 import pytest
@@ -10,11 +11,8 @@ from rest_framework.test import (APIClient, APIRequestFactory,
 
 from unologbase.models import Patient
 from unologbase.serializers import PatientSerializer
-import random
 
 pytestmark = pytest.mark.django_db
-
-
 
 
 class TestPatientSerializer:
@@ -26,8 +24,10 @@ class TestPatientSerializer:
         """
         check no bithdate later
         """
+
         d = datetime.date(3000, 1, 1)
         p = Mixer(commit=False).blend(Patient)
+
         p.birthdate = d
         [p.__dict__.pop(k) for k in ('id', '_state')]
         s = PatientSerializer(data=p.__dict__)
@@ -36,24 +36,16 @@ class TestPatientSerializer:
 
     def test_postal_code_max_size(self, patient_dict):
         patient_dict['postalcode'] = "123456"
-        s = PatientSerializer(data = patient_dict)
+        s = PatientSerializer(data=patient_dict)
         with pytest.raises(serializers.ValidationError):
-                s.is_valid(raise_exception=True), " postale code can't be 6 chars"
-
-    def test_postal_code_max_size(self, patient_dict):
-        patient_dict['postalcode']= "AAAAA"
-        s = PatientSerializer(data = patient_dict)
-        with pytest.raises(serializers.ValidationError):
-            s.is_valid(raise_exception=True), " postale code can't be chars"
-
+            s.is_valid(raise_exception=True), " postale code can't be 6 chars"
 
     def test_phone_number_is_well_formated(self, patient_dict):
         a = patient_dict
-        a['phonenumber'] = random.randrange(100000-88000)
-        s = PatientSerializer(data= a)
+        a['phonenumber'] = random.randrange(100000 - 88000)
+        s = PatientSerializer(data=a)
         with pytest.raises(serializers.ValidationError):
             s.is_valid(raise_exception=True), " sould start with + or 0"
-
 
     def test_fix(self, apiclient):
         r = apiclient.get('/api')

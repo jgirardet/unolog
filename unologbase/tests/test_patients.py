@@ -1,10 +1,7 @@
-import datetime
 from string import capwords
 
 import pytest
-from django.core.exceptions import ValidationError
-from django.db import IntegrityError
-from mixer.backend.django import Mixer, mixer
+from mixer.backend.django import Mixer
 
 from unologbase.models import Patient
 
@@ -25,6 +22,7 @@ class TestPatient:
         test autoput of str
         """
         a = Patient.objects.create(**patient_dict)
+
         assert a.__str__() == a.firstname + ' ' + a.name
 
     def test_fields_with_capwords_at_create(self, patient_dict):

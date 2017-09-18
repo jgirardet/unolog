@@ -36,41 +36,57 @@
 	"buffers":
 	[
 		{
-			"file": "unologbase/urls.py",
+			"file": "unologbase/tests/test_patients.py",
 			"settings":
 			{
-				"buffer_size": 529,
+				"buffer_size": 1794,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "/*\n    Anaconda default settings\n*/\n{\n    /*\n        Anaconda Tooltip Options\n\n        Sublime Text 3 supports tooltips since build 3070; if anaconda\n        runs in a ST3 installation equal to or newer than build 3070, it\n        can be configured to show tooltips for documentation and signatures.\n\n        The options below set how the tooltip looks.\n    */\n    \"anaconda_tooltip_theme\": \"popup\",\n\n    /*\n        If you set the following option as true, anaconda will display the\n        signatures of the methods in a floating popup.\n\n        *note*: this only has an effect if \"display_signatures\" is true.\n    */\n    \"enable_signatures_tooltip\": true,\n\n    /*\n        If you set the following option as true, anaconda will display the\n        documentation of modules, classes or methods in a floating popup.\n    */\n    \"enable_docstrings_tooltip\": true,\n\n    /*\n        If the option below is set as true, anaconda will merge the\n        outputs of display_signatures and show documentation.\n\n        *note*: This only has an effect if tooltips are enabled.\n    */\n    \"merge_signatures_and_doc\": true,\n\n\n    /*\n        Auto project switching\n\n        If you set this to true, anaconda will detect project switches and\n        will reconnect a new JsonServer with the switched project\n        configuration.\n    */\n    \"auto_project_switch\": true,\n\n    /*\n        Python Builder Options\n\n        If enabled, anaconda will add your configured interpreter (if any)\n        into your per-project `builder_systems` list if any, or create a\n        new one in case you don't define one yourself.\n\n        This is enabled by default; disable it if you experience slowdowns\n        when you switch between projects, and file an issue in GitHub.\n    */\n    \"auto_python_builder_enabled\": true,\n\n    /*\n        Debug Mode:\n\n        If you need to debug the jsonserver.py service for any reason, you\n        can configure the following options to make the plugin to connect\n        always to the same port in your local machine.\n\n        Procedure:\n\n            1. Set the debug_mode as true\n            2. Set the debug_port to your desired port\n            3. Close Sublime Text 3\n            4. cd to your Packages/Anaconda directory\n            5. Start the jsonserver manually:\n                python -B anaconda_server/jsonserver.py -p test 9999 DEBUG\n            6. Start your Sublime Text 3 and\n\n        Then your anaconda plugin will use the configured server, and you will\n        get debug messages in the terminal where you ran it.\n    */\n    \"jsonserver_debug\": false,\n    \"jsonserver_debug_port\": 9999,\n\n    /*\n        Default python interpreter\n\n        This can (and should) be overridden by project settings.\n\n        NOTE: if you want anaconda to lint and complete using a remote\n        python interpreter that runs the anaconda's minserver.py script\n        in a remote machine just use it's address:port as interpreter\n        for example:\n\n        \t\"python_interpreter\": \"tcp://my_remote.machine.com:19360\"\n    */\n    \"python_interpreter\": \"python\",\n\n    /*\n        Disable anaconda completion\n\n        WARNING: setting this as true will totally disable anaconda completion.\n    */\n    \"disable_anaconda_completion\": false,\n\n    /*\n        Set those as true if you don't want Sublime Text regular completions\n    */\n    \"suppress_word_completions\": false,\n    \"suppress_explicit_completions\": false,\n\n    /*\n        If complete_parameters is true, anaconda will add function and class\n        parameters to its completions.\n\n        If complete_all_parameters is true, it will add all the possible\n        parameters, if it's false, it will add only required parameters\n    */\n    \"complete_parameters\": false,\n    \"complete_all_parameters\": false,\n\n    /*\n        If you set the following option as true, anaconda will display the\n        signatures of the methods you are using while typing\n    */\n    \"display_signatures\": true,\n\n    /*\n        The following set of options controls the autopep autoformatting\n        behaviour.\n\n        The full list of errors that can be fixed are:\n\n            E101 - Reindent all lines.\n            E111 - Reindent all lines.\n            E121 - Fix indentation to be a multiple of four.\n            E122 - Add absent indentation for hanging indentation.\n            E123 - Align closing bracket to match opening bracket.\n            E124 - Align closing bracket to match visual indentation.\n            E125 - Indent to distinguish line from next logical line.\n            E126 - Fix over-indented hanging indentation.\n            E127 - Fix visual indentation.\n            E128 - Fix visual indentation.\n            E129 - Indent to distinguish line from next logical line.\n            E201 - Remove extraneous whitespace.\n            E202 - Remove extraneous whitespace.\n            E203 - Remove extraneous whitespace.\n            E211 - Remove extraneous whitespace.\n            E221 - Fix extraneous whitespace around keywords.\n            E222 - Fix extraneous whitespace around keywords.\n            E223 - Fix extraneous whitespace around keywords.\n            E224 - Remove extraneous whitespace around operator.\n            E225 - Fix missing whitespace around operator.\n            E226 - Fix missing whitespace around operator.\n            E227 - Fix missing whitespace around operator.\n            E228 - Fix missing whitespace around operator.\n            E231 - Add missing whitespace.\n            E241 - Fix extraneous whitespace around keywords.\n            E242 - Remove extraneous whitespace around operator.\n            E251 - Remove whitespace around parameter '=' sign.\n            E261 - Fix spacing before comment hash.\n            E262 - Fix spacing after comment hash.\n            E271 - Fix extraneous whitespace around keywords.\n            E272 - Fix extraneous whitespace around keywords.\n            E273 - Fix extraneous whitespace around keywords.\n            E274 - Fix extraneous whitespace around keywords.\n            E301 - Add missing blank line.\n            E302 - Add missing 2 blank lines.\n            E303 - Remove extra blank lines.\n            E304 - Remove blank line following function decorator.\n            E401 - Put imports on separate lines.\n            E501 - Try to make lines fit within --max-line-length characters.\n            E502 - Remove extraneous escape of newline.\n            E701 - Put colon-separated compound statement on separate lines.\n            E702 - Put semicolon-separated compound statement on separate lines.\n            E703 - Put semicolon-separated compound statement on separate lines.\n            E711 - Fix comparison with None.\n            E712 - Fix comparison with boolean.\n            W191 - Reindent all lines.\n            W291 - Remove trailing whitespace.\n            W293 - Remove trailing whitespace on blank line.\n            W391 - Remove trailing blank lines.\n            E26  - Format block comments.\n            W6   - Fix various deprecated code (via lib2to3).\n            W602 - Fix deprecated form of raising exception.\n    */\n\n    /*\n        Autoformat files on save\n\n        This option is disabled by default, AutoPEP8 is really slow and it get\n        the file buffer read only while its working in the background.\n\n        Use this at your own risk.\n    */\n    \"auto_formatting\": false,\n\n    /*\n        Timeout for the autoformatting tool before fail\n\n        Note: Take into account that depending on the size of the file you\n        want to autoformat, this can take a while.\n    */\n    \"auto_formatting_timeout\": 1,  // seconds\n\n    /*\n        Enable unsafe changes:\n            https://github.com/hhatto/autopep8#more-advanced-usage\n\n        Set it as 0 if you are unsure here.\n    */\n    \"aggressive\": 0,\n\n    /*\n        Do not fix the errors listed here:\n        Note: By default we ignore E309 as this is not pep8 but it does\n        conflict with pep257 D211.\n    */\n    \"autoformat_ignore\":\n    [\n        \"E309\"\n    ],\n\n    /*\n        Fix only the errors listed here:\n    */\n    \"autoformat_select\":\n    [\n    ],\n\n    /*\n        Set the threshold limit for McCabe complexity checker.\n    */\n    \"mccabe_threshold\": 7,\n\n    /*\n        Set to false to disable Anaconda linting entirely.\n    */\n    \"anaconda_linting\": true,\n\n    /*\n        Sets the linting behaviour for anaconda:\n\n        \"always\" - Linting works always even while you are writing (in the background)\n        \"load-save\" - Linting works in file load and save only\n        \"save-only\" - Linting works in file save only\n    */\n    \"anaconda_linting_behaviour\": \"always\",\n\n    /*\n        The minimum delay in seconds (fractional seconds are okay) before\n        a linter is run when the \"anaconda_linting\" setting is true. This allows\n        you to have background linting active, but defer the actual linting\n        until you are idle. When this value is greater than the built in linting delay,\n        errors are erased when the file is modified, since the assumption is\n        you don't want to see errors while you type (unless the option\n        anaconda_linter_persistent is true).\n    */\n    \"anaconda_linter_delay\": 0.5,\n\n    /*\n        If true, anaconda does not remove lint marks while you type.\n    */\n    \"anaconda_linter_persistent\": false,\n\n    // If true, anaconda draws gutter marks on line with errors.\n    \"anaconda_gutter_marks\": true,\n\n    /*\n\n        If anaconda_gutter_marks is true, this determines what theme is used.\n        Theme 'basic' only adds dots and circles to gutter.\n\n        Other available themes are 'alpha', 'bright', 'dark', 'hard', \"retina\"\n        (for retina displays) and 'simple'. To see icons that will be used for\n        each theme check gutter_icon_themes folder in Anaconda package.\n    */\n    \"anaconda_gutter_theme\": \"basic\",\n\n    /*\n        If 'outline' (default), anaconda will outline error lines.\n        If 'fill', anaconda will fill the lines.\n        If 'solid_underline', anaconda will draw a solid underline below regions.\n        If 'stippled_underline', anaconda will draw a stippled underline below regions.\n        If 'squiggly_underline', anaconda will draw a squiggly underline below regions.\n        If 'none', anaconda will not draw anything on error lines.\n    */\n    \"anaconda_linter_mark_style\": \"outline\",\n\n    /*\n        If this is set to false, anaconda will not underline errors.\n    */\n    \"anaconda_linter_underlines\": true,\n\n    /*\n        If this is set to true, anaconda will show errors inline.\n    */\n    \"anaconda_linter_phantoms\": false,\n\n    /*\n        This determines what theme is phantoms used.\n    */\n    \"anaconda_linter_phantoms_theme\": \"phantom\",\n\n    /*\n        This determines what template is phantoms used.\n    */\n    \"anaconda_linter_phantoms_template\": \"default\",\n\n    /*\n        If anaconda_linter_show_errors_on_save is set to true, anaconda\n        will show a list of errors when you save the file.\n\n        This is disabled by default.\n    */\n    \"anaconda_linter_show_errors_on_save\": false,\n\n    /*\n        Use PyLint instead of PyFlakes and PEP-8\n\n        **** WARNING ****\n\n        - If you set this value as true, PyFlakes and pep8 will not be used.\n        - PyLint does *NOT* support linting buffers that are not already saved in\n          the file system.\n\n        **** WARNING ****\n    */\n    \"use_pylint\": false,\n\n    // Set this to false to turn pep8 checking off completely.\n    \"pep8\": true,\n\n    /*\n        If set, the given file will be used as configuration for pep8.\n\n        **** WARNING ****\n\n        - If this option is set to something other than false,\n          pep8_ignore and pep8_max_line_length will be silently ignored.\n\n        **** WARNING ****\n    */\n    \"pep8_rcfile\": false,\n\n    /*\n        A list of pep8 error numbers to ignore.\n        The list of error codes is in this file:\n            https://github.com/jcrocholl/pep8/blob/master/pep8.py.\n        Search for \"Ennn:\", where nnn is a 3-digit number.\n        E309 is ignored by default as it conflicts with pep257 E211\n    */\n    \"pep8_ignore\":\n    [\n        \"E309\"\n    ],\n\n    // Maximum line length for pep8\n    \"pep8_max_line_length\": 79,\n\n    /*\n        You can override the level of PEP8 errors altering this mapping.\n        WARNING: Be careful with this option, the only valid error level values\n        are:\n\n            * E for errors (reduced to Warning by default)\n            * W for warnings (reduced to Violation by default)\n            * V for convention violations\n\n        If you set a value that is not listed here, anaconda will ignore your\n        setting\n    */\n    \"pep8_error_levels\": {\"E\": \"W\", \"W\": \"V\", \"V\": \"V\"},\n\n    // Set this to true to turn pep257 checking on.\n    \"pep257\": false,\n\n    /*\n        A list of pep257 error numbers to ignore.\n\n        The list can be found here: https://github.com/GreenSteam/pep257/#error-codes\n\n        D209: Multi-line docstring should end with 1 blank line is ignored by\n        default as this rule has been deprecated.\n\n        D203: 1 blank line before class docstring is ignored by default, as\n        this rule has been deprecated.\n    */\n    \"pep257_ignore\":\n    [\n        \"D203\",\n        \"D209\"\n    ],\n\n    /*\n        You can ignore some of the \"undefined name xxx\" errors (comes\n        in handy if you work with post-processors, globals/builtins\n        available only at runtime, etc.). You can control what names\n        will be ignored with the user setting \"pyflakes_ignore\".\n\n        Example:\n\n        \"pyflakes_ignore\":\n            [\n                \"some_custom_builtin_o_mine\",\n                \"A_GLOBAL_CONSTANT\"\n            ],\n    */\n    \"pyflakes_ignore\":\n    [\n    ],\n\n    /*\n        Specific error types to ignore for pyflakes.\n        (Uncomment to ignore the below error types.)\n    */\n    \"pyflakes_explicit_ignore\":\n    [\n        // \"Redefined\",\n        // \"UnusedImport\",\n        // \"UndefinedName\",\n        // \"UndefinedLocal\",\n        // \"UnusedVariable,\",\n        // \"UndefinedExport\",\n        // \"DuplicateArgument\",\n        // \"RedefinedWhileUnused\"\n    ],\n\n    /*\n        If set, the given file will be used as configuration for PyLint.\n\n        **** WARNING ****\n\n            - If this option is set to something different than false,\n              pylint_ignore will be silently ignored\n\n        **** WARNING ****\n    */\n    \"pylint_rcfile\": false,\n\n    /*\n        You can ignore specific PyLint error codes using this configuration.\n\n        We strongly suggest that you better configure your pylintrc file to\n        determine which type of error is important to you.\n    */\n    \"pylint_ignore\":\n    [\n        // \"0201\"\n    ],\n\n    /*\n        Ordinarily pyflakes will issue a warning when 'from foo import *'\n        is used; this is ignored by default.\n\n        If you want to see this warning, set this option to false.\n    */\n    \"pyflakes_ignore_import_*\": true,\n\n    /*\n        Set the following option to true if you want anaconda to check\n        the validity of your imports when the linting process is fired.\n\n        WARNING: take into account that anaconda compiles and import the\n        modules in the JsonServer memory segment in order to check this\n    */\n    \"validate_imports\": false,\n\n    /*\n    \tMyPy\n\n    \tSet the following option to true to enable MyPy checker.\n    */\n    \"mypy\": false,\n\n    /*\n        Set the following variable to set MyPy MYPYPATH.\n     */\n    \"mypy_mypypath\": \"\",\n\n    /*\n    \tMyPy Silent Imports\n\n    \tIf true, mypy will not follow imports to .py files.\n    */\n    \"mypy_silent_imports\": false,\n\n    /*\n    \tMyPy Almost Silent\n\n\t\tSame as Silent Imports, but report the imports as errors.\n    */\n    \"mypy_almost_silent\": false,\n\n    /*\n        MyPy suppress stub warnings\n\n        Suppress stub warnings when silent_imports is not used.\n     */\n    \"mypy_suppress_stub_warnings\": true,\n\n    /*\n    \tMyPy py2\n\n    \tUse Python 2 mode.\n    */\n    \"mypy_py2\": false,\n\n    /*\n    \tMyPy Disallow Untyped Calls\n\n    \tDisallow calling functions without type annotations from\n    \tfunctions with type annotations.\n    */\n    \"mypy_disallow_untyped_calls\": false,\n\n    /*\n    \tMyPy Disallow Untyped Defs\n\n    \tDisallow defining functions without type annotations or\n    \twith incomplete type annotations.\n    */\n    \"mypy_disallow_untyped_defs\": false,\n\n\t/*\n\t\tMyPy Check Untyped Defs\n\n\t\tType check the interior of functions without type annotations.\n\t*/\n\t\"mypy_check_untyped_defs\": false,\n\n    /*\n        MyPy Fast Parser\n\n        Enable the experimental fast parser module of MyPy. In practice\n        this seems to be slower, however is required for support of some\n        recent syntax changes in Python.\n    */\n    \"mypy_fast_parser\": false,\n\n\t/*\n\t\tMyPy Custom Typing\n\n\t\tUse a custom typing module. Uncomment to enable.\n\t*/\n\t// \"mypy_custom_typing\": \"\",\n\n    /*\n        Debug and development options\n\n        Use those options only for debugging and development purposes, they can\n        and will slowdown your Sublime Text\n\n        anconda_debug can be set as: false or profiler\n\n        If this is set as profiler, Anaconda will run a profiler on autocomplete\n        and print its results in the Sublime Text console.\n\n        NOTE: cProfile can't be imported in all the platforms, at least not in\n        Linux, this is an already reported bug:\n\n            http://www.sublimetext.com/forum/viewtopic.php?f=3&t=13698\n            https://github.com/SublimeText/Issues/issues/127\n\n    */\n    \"anaconda_debug\": false,\n\n    /*\n        Anaconda test runner related configuration.\n\n        The anaconda's test runner is originally a contribution by NorthIsUp\n            https://github.com/NorthIsUp\n\n        Run Twisted's trial based test suite under a virtualenv project:\n\n            // this is your <ProjectName>.sublime-project file\n            \"settings\": {\n                \"python_interpreter\": \"~/.virtualenvs/project_name\",\n                \"test_command\": \"trial\",\n                \"test_virtualenv\": \"~/.virtualenvs/project_name\",\n                \"test_project_path\": \"project_src\"\n            }\n\n        Run Django project tests using nose2 with a virtualenv:\n\n            // this is your <ProjectName>.sublime-project file\n            \"settings\": {\n                \"python_interpreter\": \"~/.virtualenvs/django_project_name\",\n                \"test_command\": \"./manage.py test --settings=tests.settings --noinput\"\n            }\n    */\n\n    /*\n        Theme to use in the output panel.\n\n        Uncomment the line below to override the default tests runner\n        output, by default the theme is PythonConsoleDark.hidden-tmTheme\n        NOTE: The file specified here **MUST** exists in `Packages/Anaconda`\n    */\n    //\"test_runner_theme\": \"PythonConsoleDark.hidden-tmTheme\",\n\n    /*\n        Uncomment the line below to execute any command before try to execute\n        your test suite. (if you need to run more than one command, just use a\n        list of commands [\"cmd1\", \"cmd2\", ...])\n\n    */\n    // \"test_before_command\": \"\",\n\n    /*\n        Command to execute tests with. nosetests by default\n    */\n    \"test_command\": \"nosetests\",\n\n    /*\n        Uncomment the line below to execute any command after execute\n        your test suite.\n    */\n    //\"test_after_command\": \"\",\n\n    /*\n        This is the delimiter between the module and the class.\n    */\n    \"test_delimeter\": \":\",\n\n    /*\n        This is the delimiter between the class and the method.\n    */\n    \"test_method_delimeter\": \".\",\n\n    /*\n        Whether to include full path of the test file/method.\n    */\n    \"test_include_full_path\": true,\n\n    /*\n        Uncomment the line below to enable filepath-based test runner\n        patterns like those required for py.test.\n    */\n    // \"test_filepath_patterns\": true,\n\n    /* Uncomment the line below to use a virtualenv for your tests */\n    //\"test_virtualenv\": \"\"\n\n    /*\n        Uncomment the line below to add a top level path when you ask\n        anaconda to run all your project tests.\n\n        Note: this is need for example to can run tests with `twisted's trial`\n    */\n    // \"test_project_path\": \"./\"\n\n    /*\n    \tSet this option to true if you get warnings about anaconda not\n    \tbeing able to connect to your localhost on ST3 startup but it\n    \tworks normally after closing the error message.\n\n    \tNOTE: Ignoring errors may be dangerous.\n     */\n\n     /* Parameters to include after test_command specific to testing scope */\n     \"test_params\": {\n        \"current_file_tests\": \"\",\n        \"current_test\": \"\",\n        \"project_tests\": \"\"\n    },\n\t\"swallow_startup_errors\": false,\n\n    /*\n        If this is set to true, anaconda will unload plugins that\n        make it malfunction interfering with it\n    */\n    \"auto_unload_conflictive_plugins\": true\n}\n\n// vim: set ft=javascript:\n",
-			"file": "/home/jim/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
-			"file_size": 20801,
-			"file_write_time": 131483354887062176,
+			"contents": "import datetime\nimport random\nfrom string import capwords\n\nimport pytest\nfrom mixer.backend.django import Mixer, mixer\nfrom rest_framework import serializers\nfrom rest_framework.reverse import reverse\nfrom rest_framework.test import (APIClient, APIRequestFactory,\n                                 force_authenticate)\nfrom unologbase.models import Patient\nfrom unologbase.serializers import PatientSerializer\n\npytestmark = pytest.mark.django_db\n\n\nclass TestPatientSerializer:\n    \"\"\"\n    Class fort PatientSerializer testing\n    \"\"\"\n\n    def test_check_birthdate(self):\n        \"\"\"\n        check no bithdate later\n        \"\"\"\n\n        d = datetime.date(3000, 1, 1)\n        p = Mixer(commit=False).blend(Patient)\n\n        p.birthdate = d\n        [p.__dict__.pop(k) for k in ('id', '_state')]\n        s = PatientSerializer(data=p.__dict__)\n        with pytest.raises(serializers.ValidationError):\n            s.is_valid(raise_exception=True), \"sould return validation error\"\n\n\n\n\n\n\n\n\n    def test_postal_code_max_size(self, patient_dict):\n        patient_dict['postalcode'] = \"123456\"\n        s = PatientSerializer(data=patient_dict)\n        with pytest.raises(serializers.ValidationError):\n            s.is_valid(raise_exception=True), \" postale code can't be 6 chars\"\n\n    def test_postal_code_max_size(self, patient_dict):\n        patient_dict['postalcode'] = \"AAAAA\"\n        s = PatientSerializer(data=patient_dict)\n        with pytest.raises(serializers.ValidationError):\n            s.is_valid(raise_exception=True), \" postale code can't be chars\"\n\n    def test_phone_number_is_well_formated(self, patient_dict):\n        a = patient_dict\n        a['phonenumber'] = random.randrange(100000 - 88000)\n        s = PatientSerializer(data=a)\n        with pytest.raises(serializers.ValidationError):\n            s.is_valid(raise_exception=True), \" sould start with + or 0\"\n\n    def test_fix(self, apiclient):\n        r = apiclient.get('/api')\n        assert r.status_code == 404\n",
+			"file": "unologbase/tests/test_serializers.py",
+			"file_size": 1967,
+			"file_write_time": 131502164513301159,
 			"settings":
 			{
-				"buffer_size": 20801,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "unolog.sublime-project",
-			"settings":
-			{
-				"buffer_size": 492,
+				"buffer_size": 1974,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/jim/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+			"file": "/home/jimmy/.config/sublime-text-3/Packages/User/PyYapf.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 57,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{\n    //Must be set in project because its per project thing\n    //\"python_interpreter\": \"/home/jimmy/.env/lequipeur--IVPCM_Y/bin/python\",\n    // \"python_interpreter\": \"$VIRTUAL_ENV/bin/python\",\n\n    //Lint and auto formating stuf\n    \"auto_formatting\": true,\n    \"autoformat_ignore\":\n    [\n        \"E501\" //line too long\n    ],\n    \"pep8_ignore\":\n    [\n        \"E501\"\n    ],\n    \"anaconda_linter_underlines\": false,\n    \"anaconda_linter_mark_style\": \"none\", // just point glutter\n    \"anaconda_gutter_theme\": \"hard\", //type de point\n\n    \n    //signature business\n    \"display_signatures\": false,\n    \"enable_signatures_tooltip\": false,\n    \"enable_docstrings_tooltip\": false,\n    \"merge_signatures_and_doc\": false,\n\n    //autocomplete args\n    \"complete_parameters\": true,\n\n\n\n    \"auto_python_builder_enabled\": false,\n}",
+			"file": "/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+			"file_size": 821,
+			"file_write_time": 131483751095583992,
 			"settings":
 			{
 				"buffer_size": 821,
-				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{\n      // full path and command to run yapf\n      \"yapf_command\": \"/usr/local/bin/yapf\",\n\n      // reformat entire file if no text is selected\n      \"use_entire_file_if_no_selection\": true,\n\n      // run yapf before saving document\n      \"on_save\": false,\n\n      // report errors in popup dialog (in addition to status bar)\n      \"popup_errors\": false,\n\n      // if no encoding is specified use this.  utf-8 is a good choice,\n      // ascii is (much) more restrictive.  any of these should work:\n      // https://docs.python.org/2/library/codecs.html#standard-encodings\n      \"default_encoding\": \"UTF-8\",\n\n      // custom yapf style options\n      //\n      // if commented out then yapf will search for the formatting style in the following manner:\n      // 1. in the [style] section of a .style.yapf file in either the current directory or one of its parent directories.\n      // 2. in the [yapf] section of a setup.cfg file in either the current directory or one of its parent directories.\n      // 3. in the ~/.config/yapf/style file in your home directory.\n      // if none of those files are found, the default style is used (PEP8).\n      //\n      /*\n      \"config\": {\n            // Determines which of the predefined styles this custom style is based on.\n            \"based_on_style\": \"pep8\",\n\n            // Align closing bracket with visual indentation.\n            \"ALIGN_CLOSING_BRACKET_WITH_VISUAL_INDENT\": true,\n\n            // Insert a blank line before a 'def' or 'class' immediately\n            // nested within another 'def' or 'class'.\n            //\n            // For example:\n            //\n            // class Foo:\n            //                    # <------ this blank line\n            //   def method():\n            //     ...\n            //\n            \"BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF\": false,\n\n            // The column limit.\n            \"COLUMN_LIMIT\": 79,\n\n            // Indent width for line continuations.\n            \"CONTINUATION_INDENT_WIDTH\": 4,\n\n            // Put closing brackets on a separate line, dedented, if the\n            // bracketed expression can't fit in a single line. Applies to\n            // all kinds of brackets, including function definitions and calls.\n            //\n            // For example:\n            //\n            // config = {\n            //     'key1': 'value1',\n            //     'key2': 'value2',\n            // }        # <--- this bracket is dedented and on a separate line\n            //\n            // time_series = self.remote_client.query_entity_counters(\n            //   entity='dev3246.region1',\n            //   key='dns.query_latency_tcp',\n            //   transform=Transformation.AVERAGE(window=timedelta(seconds=60)),\n            //   start_ts=now()-timedelta(days=3),\n            //   end_ts=now(),\n            // )        # <--- this bracket is dedented and on a separate line\n\n            \"DEDENT_CLOSING_BRACKETS\": false,\n\n            // The regex for an i18n comment. The presence of this comment stops\n            // reformatting of that line, because the comments are required to be\n            // next to the string they translate.\n            \"I18N_COMMENT\": \"\",\n\n            // The i18n function call names. The presence of this function stops\n            // reformattting on that line, because the string it has cannot be moved\n            // away from the i18n comment.\n            \"I18N_FUNCTION_CALL\": \"\",\n\n            // Indent the dictionary value if it cannot fit on the same line as the dictionary key.\n            //\n            // For example:\n            //\n            // config = {\n            //     'key1':\n            //         'value1',\n            //     'key2': value1 +\n            //             value2,\n            // }\n            \"INDENT_DICTIONARY_VALUE\": false,\n\n            // The number of columns to use for indentation.\n            \"INDENT_WIDTH\": 4,\n\n            // Join short lines into one line. E.g., single line if statements.\n            \"JOIN_MULTIPLE_LINES\": true,\n\n            // Insert a space between the ending comma and closing bracket of a list,\n            // etc.\n            \"SPACE_BETWEEN_ENDING_COMMA_AND_CLOSING_BRACKET\": true,\n\n            // The number of spaces required before a trailing comment.\n            \"SPACES_BEFORE_COMMENT\": 2,\n\n            // Set to True to prefer splitting before &, | or ^ rather than after.\n            \"SPLIT_BEFORE_BITWISE_OPERATOR\": true,\n\n            // Set to True to prefer splitting before 'and' or 'or' rather than\n            // after.\n            \"SPLIT_BEFORE_LOGICAL_OPERATOR\": false,\n\n            // Split named assignments onto individual lines.\n            \"SPLIT_BEFORE_NAMED_ASSIGNS\": true,\n\n            // The penalty for splitting right after the opening bracket.\n            \"SPLIT_PENALTY_AFTER_OPENING_BRACKET\": 30,\n\n            // The penalty for splitting the line after a unary operator.\n            \"SPLIT_PENALTY_AFTER_UNARY_OPERATOR\": 10000,\n\n            // The penalty of splitting the line around the &, |, and ^ operators.\n            \"SPLIT_PENALTY_BITWISE_OPERATOR\": 300,\n\n            // The penalty for characters over the column limit.\n            \"SPLIT_PENALTY_EXCESS_CHARACTER\": 2500,\n\n            // The penalty incurred by adding a line split to the unwrapped line. The\n            // more line splits added the higher the penalty.\n            \"SPLIT_PENALTY_FOR_ADDED_LINE_SPLIT\": 30,\n\n            // The penalty of splitting a list of import as names.\n            //\n            // For example:\n            //\n            //   from a_very_long_or_indented_module_name_yada_yad import (long_argument_1,\n            //                                                             long_argument_2,\n            //                                                             long_argument_3)\n            //\n            // would reformat to something like:\n            //\n            // from a_very_long_or_indented_module_name_yada_yad import (\n            //     long_argument_1, long_argument_2, long_argument_3)\n            \"SPLIT_PENALTY_IMPORT_NAMES\": 0,\n\n            // The penalty of splitting the line around the 'and' and 'or' operators.\n            \"SPLIT_PENALTY_LOGICAL_OPERATOR\": 300,\n      },\n      */\n\n      // pass source code on stdin (otherwise, a temporary file is used).  only\n      // when this option is enabled yapf will pick up the style as described\n      // in yapf --help).  currently disabled by default due to upstream bug,\n      // see https://github.com/google/yapf/pull/145.\n      \"use_stdin\": false,\n\n      // add extra output to the console for debugging pyyapf/yapf behavior\n      \"debug\": false\n}\n",
+			"file": "/home/jimmy/.config/sublime-text-3/Packages/PyYapf Python Formatter/PyYapf.sublime-settings",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 6658,
+				"line_ending": "Unix",
+				"read_only": true,
+				"scratch": true
 			}
 		}
 	],
@@ -82,16 +98,112 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "",
+		"last_filter": "linter",
 		"selected_items":
 		[
 			[
-				"remove",
-				"Package Control: Remove Package"
+				"linter",
+				"SublimeLinter: Next Error"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"isort",
+				"ImportSort: Sort imports"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"iso",
+				"ImportSort: Sort imports"
+			],
+			[
+				"yap",
+				"PyYapf: Format Document"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"run",
+				"Django: Run Server"
+			],
+			[
+				"pytest",
+				"PyTest: Run: All"
+			],
+			[
+				"set pyth",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"fix",
+				"Enable Python Fix Imports (until restart)"
+			],
+			[
+				"make",
+				"Django: Make Migration"
 			],
 			[
 				"Django:run",
 				"Django: Run Server"
+			],
+			[
+				"Django:set",
+				"Django: Set Virtual Environment"
+			],
+			[
+				"Django:",
+				"Django: Run Server"
+			],
+			[
+				"shel",
+				"Django: Shell"
+			],
+			[
+				"term",
+				"Terminal: Open"
+			],
+			[
+				"Django:she",
+				"Django: Shell"
+			],
+			[
+				"Django:sh",
+				"Django: Shell"
+			],
+			[
+				"activ",
+				"Virtualenv: Activate"
+			],
+			[
+				"Pinstall",
+				"Package Control: Install Package"
+			],
+			[
+				"acti",
+				"Virtualenv: Activate"
+			],
+			[
+				"deac",
+				"Virtualenv: Deactivate"
+			],
+			[
+				"vi",
+				"Virtualenv: Activate"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
 			],
 			[
 				"Django:vi",
@@ -114,28 +226,12 @@
 				"Django: Custom Command"
 			],
 			[
-				"Django:she",
-				"Django: Shell"
-			],
-			[
 				"Django:se",
 				"Django: Set Virtual Environment"
 			],
 			[
-				"Django:set",
-				"Django: Set Virtual Environment"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
 				"test",
 				"Anaconda: Run Project Tests"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"listma",
@@ -162,10 +258,6 @@
 				"Django: Shell"
 			],
 			[
-				"run",
-				"Django: Run Server"
-			],
-			[
 				"runser",
 				"Django: Run Server"
 			],
@@ -175,10 +267,6 @@
 			],
 			[
 				"Django:runs",
-				"Django: Run Server"
-			],
-			[
-				"Django:",
 				"Django: Run Server"
 			],
 			[
@@ -222,14 +310,6 @@
 				"Set Syntax: Batch File"
 			],
 			[
-				"instal",
-				"Package Control: Install Package"
-			],
-			[
-				"pytest",
-				"PythonTest: Run project tests"
-			],
-			[
 				"pythonte",
 				"PythonTest: Run project tests"
 			],
@@ -247,10 +327,6 @@
 			],
 			[
 				"VIRTU",
-				"Virtualenv: Activate"
-			],
-			[
-				"vi",
 				"Virtualenv: Activate"
 			],
 			[
@@ -320,10 +396,6 @@
 			[
 				"Django:virtu",
 				"Django: Set Virtual Environment"
-			],
-			[
-				"term",
-				"Terminal: Open"
 			],
 			[
 				"instll",
@@ -414,13 +486,15 @@
 				"Package Control: List Packages"
 			]
 		],
-		"width": 453.0
+		"width": 479.0
 	},
 	"console":
 	{
-		"height": 126.0,
+		"height": 237.0,
 		"history":
 		[
+			"sublime.log_commands(True)",
+			"sublime.log.commands(True)",
 			"sys.path",
 			"import sys",
 			"python -V",
@@ -441,12 +515,16 @@
 	},
 	"expanded_folders":
 	[
-		"/home/jim/seafile/dev/unolog"
+		"/home/jimmy/dit/unolog"
 	],
 	"file_history":
 	[
-		"/home/jim/seafile/dev/unolog/projet.anaconda.bk",
+		"/home/jimmy/dit/unolog/unolog.sublime-project",
+		"/home/jimmy/.config/sublime-text-3/Packages/Virtualenv/Virtualenv.sublime-settings",
+		"/home/jim/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/Virtualenv.sublime-settings",
 		"/home/jim/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+		"/home/jim/seafile/dev/unolog/projet.anaconda.bk",
 		"/home/jim/.config/sublime-text-3/Packages/User/DjangoCommands.sublime-settings",
 		"/home/jim/seafile/dev/unolog/unolog.sublime-project",
 		"/home/jim/.config/sublime-text-3/Packages/Anaconda/LICENSE",
@@ -516,9 +594,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"TextFiedlr",
-			"runserver",
-			"PatientManager"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -526,7 +601,6 @@
 		"regex": false,
 		"replace_history":
 		[
-			"\t\t\t\n"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -537,24 +611,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "unologbase/urls.py",
+					"file": "unologbase/tests/test_patients.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 529,
+						"buffer_size": 1794,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								153,
-								153
+								568,
+								568
 							]
 						],
 						"settings":
@@ -568,59 +642,86 @@
 								{
 									"characters": ".",
 									"selector": "source.python - string - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
 								}
 							],
+							"git_gutter_is_enabled": true,
 							"syntax": "Packages/Python/Python.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/home/jim/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+					"file": "unologbase/tests/test_serializers.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20801,
+						"buffer_size": 1974,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20116,
-								20116
+								979,
+								979
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Python/Python.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 9315.0,
+						"translation.y": 120.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "unolog.sublime-project",
+					"file": "/home/jimmy/.config/sublime-text-3/Packages/User/PyYapf.sublime-settings",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 492,
+						"buffer_size": 57,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								23,
+								23
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 821,
 						"regions":
 						{
 						},
@@ -633,14 +734,16 @@
 						],
 						"settings":
 						{
+							"git_gutter_is_enabled": true,
 							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -650,33 +753,31 @@
 			"sheets":
 			[
 				{
-					"buffer": 3,
-					"file": "/home/jim/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+					"buffer": 4,
+					"file": "/home/jimmy/.config/sublime-text-3/Packages/PyYapf Python Formatter/PyYapf.sublime-settings",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 821,
+						"buffer_size": 6658,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								821,
-								821
+								248,
+								248
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 270.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -688,7 +789,7 @@
 	},
 	"input":
 	{
-		"height": 31.0
+		"height": 35.0
 	},
 	"layout":
 	{
@@ -722,7 +823,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 143.0
+		"height": 102.0
 	},
 	"output.find_results":
 	{
@@ -779,7 +880,7 @@
 	{
 	},
 	"show_minimap": false,
-	"show_open_files": false,
+	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 203.0,

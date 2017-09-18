@@ -1,6 +1,6 @@
 from string import capwords
-from django.db import models
 
+from django.db import models
 
 CAPWORDS_ATTRS = ('name', 'firstname', 'city')
 
@@ -10,6 +10,7 @@ class PatientManager(models.Manager):
     custum patient manger to modifie create and update
     """
     attrs = CAPWORDS_ATTRS
+
     # paremeter to capwords
 
     # def create_patient(self, name=None, firstname=None, birthdate=None):
@@ -55,6 +56,7 @@ class Patient(models.Model):
     name = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50)
     birthdate = models.DateField()
+    a = "mokmok"
 
     # non required fields
     street = models.CharField(blank=True, max_length=200, default="")
