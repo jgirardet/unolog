@@ -36,57 +36,57 @@
 	"buffers":
 	[
 		{
-			"file": "unologbase/tests/test_patients.py",
+			"contents": "from string import capwords\n\nfrom django.db import models\n\nCAPWORDS_ATTRS = ('name', 'firstname', 'city')\n\n\nclass PatientManager(models.Manager):\n    \"\"\"\n    custum patient manger to modifie create and update\n    \"\"\"\n    attrs = CAPWORDS_ATTRS\n\n    # paremeter to capwords\n\n    # def create_patient(self, name=None, firstname=None, birthdate=None):\n    #     \"\"\"\n    #     every patient creatient must use this\n    #     \"\"\"\n    #     if not name:\n    #         raise ValueError('Must Include a name when adding a Patient')\n    #     if not firstname:\n    #         raise ValueError('Must Include a firstname when adding a Patient')\n    #     if not birthdate:\n    #         raise ValueError('Must Include a birthdate when adding a Patient')\n\n    #     patient = self.model(\n    #             name = name,\n    #             firstname=  firstname,\n    #             birthdate = birthdate\n    #             )\n\n    #     print('hello')\n    #     patient.save(using=self.db)\n    #     return patient\n\n    def create(self, **kwargs):\n        \"\"\"\n        enhancement\n        \"\"\"\n        # capwors certain fields\n        for i in self.attrs:\n            kwargs[i] = capwords(kwargs[i])\n\n        # recall base create\n        return super(PatientManager, self).create(**kwargs)\n\n\nclass Patient(models.Model):\n    \"\"\"\n    ase class of patient.&\n    Require on ly 3 fields : name, firstname, birthdate\n    \"\"\"\n    attrs = CAPWORDS_ATTRS\n    # required Field\n    name = models.CharField(max_length=50)\n    firstname = models.CharField(max_length=50)\n    birthdate = models.DateField()\n    a = \"mokmok\"\n\n    # non required fields\n    street = models.CharField(blank=True, max_length=200, default=\"\")\n    postalcode = models.CharField(blank=True, max_length=5, default=\"\")\n    city = models.CharField(max_length=200, blank=True, default=\"\")\n    phonenumber = models.CharField(blank=True, max_length=20, default=\"\")\n    email = models.EmailField(blank=True, max_length=100, default=\"\")\n\n    objects = PatientManager()\n\n    def __str__(self):\n        \"\"\"\n        nice printing Firstname Name\n        \"\"\"\n        return self.firstname + ' ' + self.name\n\n    def save(self, *args, **kwargs):\n        \"\"\"\n        customizing save method, adds :\n        - fore capwords for name et firstanme\n        \"\"\"\n        for i in self.attrs:\n            setattr(self, i, capwords(getattr(self, i)))\n\n        super(Patient, self).save(*args, **kwargs)\n",
+			"file": "unologbase/models/patients.py",
+			"file_size": 2422,
+			"file_write_time": 131502259325620834,
 			"settings":
 			{
-				"buffer_size": 1794,
+				"buffer_size": 2422,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "import pytest\nfrom mixer.backend.django import Mixer, mixer\n\nfrom unologbase.models import Patient\n\npytestmark = pytest.mark.django_db\n\n\nclass TestObservation:\n    \"\"\"\n    model Observation tesing\n    \"\"\"\n\n    # def test_str(self, observation_nodb):\n    #     o = observation_nodb\n    #     o.save()\n    #     assert o.__str__() == o.motif\n",
+			"file": "unologbase/tests/test_actes.py",
+			"file_size": 340,
+			"file_write_time": 131502259681700833,
+			"settings":
+			{
+				"buffer_size": 340,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "import datetime\nimport random\nfrom string import capwords\n\nimport pytest\nfrom mixer.backend.django import Mixer, mixer\nfrom rest_framework import serializers\nfrom rest_framework.reverse import reverse\nfrom rest_framework.test import (APIClient, APIRequestFactory,\n                                 force_authenticate)\nfrom unologbase.models import Patient\nfrom unologbase.serializers import PatientSerializer\n\npytestmark = pytest.mark.django_db\n\n\nclass TestPatientSerializer:\n    \"\"\"\n    Class fort PatientSerializer testing\n    \"\"\"\n\n    def test_check_birthdate(self):\n        \"\"\"\n        check no bithdate later\n        \"\"\"\n\n        d = datetime.date(3000, 1, 1)\n        p = Mixer(commit=False).blend(Patient)\n\n        p.birthdate = d\n        [p.__dict__.pop(k) for k in ('id', '_state')]\n        s = PatientSerializer(data=p.__dict__)\n        with pytest.raises(serializers.ValidationError):\n            s.is_valid(raise_exception=True), \"sould return validation error\"\n\n\n\n\n\n\n\n\n    def test_postal_code_max_size(self, patient_dict):\n        patient_dict['postalcode'] = \"123456\"\n        s = PatientSerializer(data=patient_dict)\n        with pytest.raises(serializers.ValidationError):\n            s.is_valid(raise_exception=True), \" postale code can't be 6 chars\"\n\n    def test_postal_code_max_size(self, patient_dict):\n        patient_dict['postalcode'] = \"AAAAA\"\n        s = PatientSerializer(data=patient_dict)\n        with pytest.raises(serializers.ValidationError):\n            s.is_valid(raise_exception=True), \" postale code can't be chars\"\n\n    def test_phone_number_is_well_formated(self, patient_dict):\n        a = patient_dict\n        a['phonenumber'] = random.randrange(100000 - 88000)\n        s = PatientSerializer(data=a)\n        with pytest.raises(serializers.ValidationError):\n            s.is_valid(raise_exception=True), \" sould start with + or 0\"\n\n    def test_fix(self, apiclient):\n        r = apiclient.get('/api')\n        assert r.status_code == 404\n",
-			"file": "unologbase/tests/test_serializers.py",
-			"file_size": 1967,
-			"file_write_time": 131502164513301159,
-			"settings":
-			{
-				"buffer_size": 1974,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/jimmy/.config/sublime-text-3/Packages/User/PyYapf.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 57,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "{\n    //Must be set in project because its per project thing\n    //\"python_interpreter\": \"/home/jimmy/.env/lequipeur--IVPCM_Y/bin/python\",\n    // \"python_interpreter\": \"$VIRTUAL_ENV/bin/python\",\n\n    //Lint and auto formating stuf\n    \"auto_formatting\": true,\n    \"autoformat_ignore\":\n    [\n        \"E501\" //line too long\n    ],\n    \"pep8_ignore\":\n    [\n        \"E501\"\n    ],\n    \"anaconda_linter_underlines\": false,\n    \"anaconda_linter_mark_style\": \"none\", // just point glutter\n    \"anaconda_gutter_theme\": \"hard\", //type de point\n\n    \n    //signature business\n    \"display_signatures\": false,\n    \"enable_signatures_tooltip\": false,\n    \"enable_docstrings_tooltip\": false,\n    \"merge_signatures_and_doc\": false,\n\n    //autocomplete args\n    \"complete_parameters\": true,\n\n\n\n    \"auto_python_builder_enabled\": false,\n}",
-			"file": "/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
-			"file_size": 821,
-			"file_write_time": 131483751095583992,
-			"settings":
-			{
-				"buffer_size": 821,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "{\n      // full path and command to run yapf\n      \"yapf_command\": \"/usr/local/bin/yapf\",\n\n      // reformat entire file if no text is selected\n      \"use_entire_file_if_no_selection\": true,\n\n      // run yapf before saving document\n      \"on_save\": false,\n\n      // report errors in popup dialog (in addition to status bar)\n      \"popup_errors\": false,\n\n      // if no encoding is specified use this.  utf-8 is a good choice,\n      // ascii is (much) more restrictive.  any of these should work:\n      // https://docs.python.org/2/library/codecs.html#standard-encodings\n      \"default_encoding\": \"UTF-8\",\n\n      // custom yapf style options\n      //\n      // if commented out then yapf will search for the formatting style in the following manner:\n      // 1. in the [style] section of a .style.yapf file in either the current directory or one of its parent directories.\n      // 2. in the [yapf] section of a setup.cfg file in either the current directory or one of its parent directories.\n      // 3. in the ~/.config/yapf/style file in your home directory.\n      // if none of those files are found, the default style is used (PEP8).\n      //\n      /*\n      \"config\": {\n            // Determines which of the predefined styles this custom style is based on.\n            \"based_on_style\": \"pep8\",\n\n            // Align closing bracket with visual indentation.\n            \"ALIGN_CLOSING_BRACKET_WITH_VISUAL_INDENT\": true,\n\n            // Insert a blank line before a 'def' or 'class' immediately\n            // nested within another 'def' or 'class'.\n            //\n            // For example:\n            //\n            // class Foo:\n            //                    # <------ this blank line\n            //   def method():\n            //     ...\n            //\n            \"BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF\": false,\n\n            // The column limit.\n            \"COLUMN_LIMIT\": 79,\n\n            // Indent width for line continuations.\n            \"CONTINUATION_INDENT_WIDTH\": 4,\n\n            // Put closing brackets on a separate line, dedented, if the\n            // bracketed expression can't fit in a single line. Applies to\n            // all kinds of brackets, including function definitions and calls.\n            //\n            // For example:\n            //\n            // config = {\n            //     'key1': 'value1',\n            //     'key2': 'value2',\n            // }        # <--- this bracket is dedented and on a separate line\n            //\n            // time_series = self.remote_client.query_entity_counters(\n            //   entity='dev3246.region1',\n            //   key='dns.query_latency_tcp',\n            //   transform=Transformation.AVERAGE(window=timedelta(seconds=60)),\n            //   start_ts=now()-timedelta(days=3),\n            //   end_ts=now(),\n            // )        # <--- this bracket is dedented and on a separate line\n\n            \"DEDENT_CLOSING_BRACKETS\": false,\n\n            // The regex for an i18n comment. The presence of this comment stops\n            // reformatting of that line, because the comments are required to be\n            // next to the string they translate.\n            \"I18N_COMMENT\": \"\",\n\n            // The i18n function call names. The presence of this function stops\n            // reformattting on that line, because the string it has cannot be moved\n            // away from the i18n comment.\n            \"I18N_FUNCTION_CALL\": \"\",\n\n            // Indent the dictionary value if it cannot fit on the same line as the dictionary key.\n            //\n            // For example:\n            //\n            // config = {\n            //     'key1':\n            //         'value1',\n            //     'key2': value1 +\n            //             value2,\n            // }\n            \"INDENT_DICTIONARY_VALUE\": false,\n\n            // The number of columns to use for indentation.\n            \"INDENT_WIDTH\": 4,\n\n            // Join short lines into one line. E.g., single line if statements.\n            \"JOIN_MULTIPLE_LINES\": true,\n\n            // Insert a space between the ending comma and closing bracket of a list,\n            // etc.\n            \"SPACE_BETWEEN_ENDING_COMMA_AND_CLOSING_BRACKET\": true,\n\n            // The number of spaces required before a trailing comment.\n            \"SPACES_BEFORE_COMMENT\": 2,\n\n            // Set to True to prefer splitting before &, | or ^ rather than after.\n            \"SPLIT_BEFORE_BITWISE_OPERATOR\": true,\n\n            // Set to True to prefer splitting before 'and' or 'or' rather than\n            // after.\n            \"SPLIT_BEFORE_LOGICAL_OPERATOR\": false,\n\n            // Split named assignments onto individual lines.\n            \"SPLIT_BEFORE_NAMED_ASSIGNS\": true,\n\n            // The penalty for splitting right after the opening bracket.\n            \"SPLIT_PENALTY_AFTER_OPENING_BRACKET\": 30,\n\n            // The penalty for splitting the line after a unary operator.\n            \"SPLIT_PENALTY_AFTER_UNARY_OPERATOR\": 10000,\n\n            // The penalty of splitting the line around the &, |, and ^ operators.\n            \"SPLIT_PENALTY_BITWISE_OPERATOR\": 300,\n\n            // The penalty for characters over the column limit.\n            \"SPLIT_PENALTY_EXCESS_CHARACTER\": 2500,\n\n            // The penalty incurred by adding a line split to the unwrapped line. The\n            // more line splits added the higher the penalty.\n            \"SPLIT_PENALTY_FOR_ADDED_LINE_SPLIT\": 30,\n\n            // The penalty of splitting a list of import as names.\n            //\n            // For example:\n            //\n            //   from a_very_long_or_indented_module_name_yada_yad import (long_argument_1,\n            //                                                             long_argument_2,\n            //                                                             long_argument_3)\n            //\n            // would reformat to something like:\n            //\n            // from a_very_long_or_indented_module_name_yada_yad import (\n            //     long_argument_1, long_argument_2, long_argument_3)\n            \"SPLIT_PENALTY_IMPORT_NAMES\": 0,\n\n            // The penalty of splitting the line around the 'and' and 'or' operators.\n            \"SPLIT_PENALTY_LOGICAL_OPERATOR\": 300,\n      },\n      */\n\n      // pass source code on stdin (otherwise, a temporary file is used).  only\n      // when this option is enabled yapf will pick up the style as described\n      // in yapf --help).  currently disabled by default due to upstream bug,\n      // see https://github.com/google/yapf/pull/145.\n      \"use_stdin\": false,\n\n      // add extra output to the console for debugging pyyapf/yapf behavior\n      \"debug\": false\n}\n",
-			"file": "/home/jimmy/.config/sublime-text-3/Packages/PyYapf Python Formatter/PyYapf.sublime-settings",
+			"contents": "",
+			"file": "/home/jimmy/.config/sublime-text-3/Packages/User/sublime_jedi.sublime-settings",
 			"file_size": -1,
 			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 6658,
-				"line_ending": "Unix",
-				"read_only": true,
-				"scratch": true
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/jimmy/git/dotfiles/README.md",
+			"settings":
+			{
+				"buffer_size": 387,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{\n    // Used to get the `PYTHONPATH`.\n    // You can set a path to your python interpreter,\n    // for example `/home/user/.virtualenvs/myenv/bin/python)`.\n    //\"python_interpreter\": \"$VIRTUAL_ENV/bin/python\",\n\n    // Additional python package paths.\n    \"python_package_paths\": [],\n\n    // Which function arguments to insert in autocompletion:\n    // \"all\" - all\n    // \"required\" - those with no default value (that are required)\n    // \"\" - none\n    \"auto_complete_function_params\": \"required\",\n\n    // \"debug\", \"error\", \"info\", \"warn\"\n    \"logging_level\": \"warn\",\n\n    // Which completions to show:\n    // \"all\" - both jedi's and sublime's\n    // \"jedi\" - only jedi's\n    // \"default\" - only jedi's if it has something to show, otherwise sublime's\n    \"sublime_completions_visibility\": \"jedi\",\n\n    // how to open goto definition result with ability to show it transient\n    // variation (preview only. it won't have a tab assigned it until modified):\n    // \"single-panel\" - opens a file in same layout (default)\n    // \"single-panel-transient\" - same as above but in transient mode\n    // \"two-panel\" - opens a file in a split to two columns layout\n    // \"two-panel-transient\" - same as above but in transient mode\n    \"sublime_goto_layout\": \"single-panel\",\n\n    // Use hover popup to display the docstring of a function.\n    // \"true\" - replace ST's goto defintion popup by jedi's docstring popup\n    // \"false\" - use ST's default goto definition popup\n    \"enable_tooltip\": true,\n\n    //\"auto_complete_triggers\": [{\"selector\": \"source.python\", \"characters\": \".\"}],\n}\n",
+			"file": "/home/jimmy/.config/sublime-text-3/Packages/Jedi - Python autocompletion/sublime_jedi.sublime-settings",
+			"file_size": 1578,
+			"file_write_time": 131502258281620837,
+			"settings":
+			{
+				"buffer_size": 1578,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -97,29 +97,93 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "linter",
+		"height": 364.0,
+		"last_filter": "packde",
 		"selected_items":
 		[
 			[
-				"linter",
-				"SublimeLinter: Next Error"
+				"packde",
+				"Package Control: Disable Package"
 			],
 			[
 				"insta",
 				"Package Control: Install Package"
 			],
 			[
+				"pyte",
+				"PyTest: Run: Current file"
+			],
+			[
+				"pu",
+				"Git: Push"
+			],
+			[
+				"q",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"Django:",
+				"Django: Shell"
+			],
+			[
+				"Django:run",
+				"Django: Run Server"
+			],
+			[
+				"runs",
+				"Django: Run Server"
+			],
+			[
 				"install",
 				"Package Control: Install Package"
 			],
 			[
-				"isort",
-				"ImportSort: Sort imports"
+				"gitgutt",
+				"GitGutter: Compare Against HEAD"
+			],
+			[
+				"gitgut",
+				"GitGutter: Compare Against HEAD"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"bran",
+				"Git: Change Branch"
+			],
+			[
+				"git",
+				"Git: Commit"
 			],
 			[
 				"instal",
 				"Package Control: Install Package"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"INSTALL",
+				"Package Control: Install Package"
+			],
+			[
+				"PYTEST",
+				"PyTest: Run: All"
+			],
+			[
+				"linter",
+				"Preferences: SublimeLinter Settings – Default"
+			],
+			[
+				"isort",
+				"ImportSort: Sort imports"
 			],
 			[
 				"iso",
@@ -128,10 +192,6 @@
 			[
 				"yap",
 				"PyYapf: Format Document"
-			],
-			[
-				"isntall",
-				"Package Control: Install Package"
 			],
 			[
 				"run",
@@ -154,16 +214,8 @@
 				"Django: Make Migration"
 			],
 			[
-				"Django:run",
-				"Django: Run Server"
-			],
-			[
 				"Django:set",
 				"Django: Set Virtual Environment"
-			],
-			[
-				"Django:",
-				"Django: Run Server"
 			],
 			[
 				"shel",
@@ -486,13 +538,17 @@
 				"Package Control: List Packages"
 			]
 		],
-		"width": 479.0
+		"width": 497.0
 	},
 	"console":
 	{
 		"height": 237.0,
 		"history":
 		[
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(true)",
+			"sublime.lo_commands(true)",
 			"sublime.log_commands(True)",
 			"sublime.log.commands(True)",
 			"sys.path",
@@ -515,10 +571,22 @@
 	},
 	"expanded_folders":
 	[
-		"/home/jimmy/dit/unolog"
+		"/home/jimmy/dit/unolog",
+		"/home/jimmy/dit/unolog/unologbase",
+		"/home/jimmy/dit/unolog/unologbase/tests"
 	],
 	"file_history":
 	[
+		"/home/jimmy/dit/unolog/unologbase/tests/test_patients.py",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/PyYapf.sublime-settings",
+		"/home/jimmy/.config/sublime-text-3/Packages/PyYapf Python Formatter/PyYapf.sublime-settings",
+		"/home/jimmy/.cache/.fr-YX2k15/django-commands.py",
+		"/home/jimmy/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings",
+		"/home/jimmy/dit/unolog/projet.anacondax",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+		"/home/jimmy/dit/unolog/unologbase/tests/test_serializers.py",
 		"/home/jimmy/dit/unolog/unolog.sublime-project",
 		"/home/jimmy/.config/sublime-text-3/Packages/Virtualenv/Virtualenv.sublime-settings",
 		"/home/jim/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
@@ -569,7 +637,6 @@
 		"/home/jim/.config/sublime-text-3/Packages/Terminal/Default (Linux).sublime-keymap",
 		"/home/jim/.config/sublime-text-3/Packages/User/Terminal.sublime-settings",
 		"/home/jimmy/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
-		"/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
 		"/home/jimmy/git/unolog/requirements.txt",
 		"/home/jimmy/git/unolog/unologbase/tests/test_patients.py",
 		"/usr/lib/python3.5/string.py",
@@ -594,6 +661,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"runserver"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -602,7 +670,7 @@
 		"replace_history":
 		[
 		],
-		"reverse": false,
+		"reverse": true,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -616,97 +684,28 @@
 			[
 				{
 					"buffer": 0,
-					"file": "unologbase/tests/test_patients.py",
+					"file": "unologbase/models/patients.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1794,
+						"buffer_size": 2422,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								568,
-								568
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": ".",
-									"selector": "source.python - string - comment - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								}
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "unologbase/tests/test_serializers.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1974,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								979,
-								979
+								1180,
+								1180
 							]
 						],
 						"settings":
 						{
 							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Python/Python.sublime-syntax",
+							"show_definitions": false,
+							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 120.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/jimmy/.config/sublime-text-3/Packages/User/PyYapf.sublime-settings",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 57,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								23,
-								23
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -716,12 +715,42 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+					"buffer": 1,
+					"file": "unologbase/tests/test_actes.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 821,
+						"buffer_size": 340,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								206,
+								206
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"show_definitions": false,
+							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/jimmy/.config/sublime-text-3/Packages/User/sublime_jedi.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -734,16 +763,43 @@
 						],
 						"settings":
 						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/jimmy/git/dotfiles/README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 387,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								387,
+								387
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -754,24 +810,27 @@
 			[
 				{
 					"buffer": 4,
-					"file": "/home/jimmy/.config/sublime-text-3/Packages/PyYapf Python Formatter/PyYapf.sublime-settings",
+					"file": "/home/jimmy/.config/sublime-text-3/Packages/Jedi - Python autocompletion/sublime_jedi.sublime-settings",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6658,
+						"buffer_size": 1578,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								248,
-								248
+								1498,
+								1498
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -823,11 +882,19 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 102.0
+		"height": 130.0
 	},
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 102.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 102.0
 	},
 	"pinned_build_system": "Packages/Python 3/Python3.sublime-build",
 	"project": "unolog.sublime-project",

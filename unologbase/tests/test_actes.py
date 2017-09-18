@@ -1,9 +1,10 @@
+import pytest
 from mixer.backend.django import Mixer, mixer
 
-import pytest
 from unologbase.models import Patient
 
 pytestmark = pytest.mark.django_db
+
 
 class TestObservation:
     """
