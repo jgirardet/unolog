@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"a",
+				"abs\tfunction"
+			],
+			[
+				"d",
+				"def\tFunction"
+			],
+			[
+				"de",
+				"devnull\tstatement"
+			],
+			[
+				"pa",
+				"path\tmodule"
+			],
+			[
 				"vie",
 				"viewsets\tmodule"
 			],
@@ -36,57 +52,55 @@
 	"buffers":
 	[
 		{
-			"contents": "from string import capwords\n\nfrom django.db import models\n\nCAPWORDS_ATTRS = ('name', 'firstname', 'city')\n\n\nclass PatientManager(models.Manager):\n    \"\"\"\n    custum patient manger to modifie create and update\n    \"\"\"\n    attrs = CAPWORDS_ATTRS\n\n    # paremeter to capwords\n\n    # def create_patient(self, name=None, firstname=None, birthdate=None):\n    #     \"\"\"\n    #     every patient creatient must use this\n    #     \"\"\"\n    #     if not name:\n    #         raise ValueError('Must Include a name when adding a Patient')\n    #     if not firstname:\n    #         raise ValueError('Must Include a firstname when adding a Patient')\n    #     if not birthdate:\n    #         raise ValueError('Must Include a birthdate when adding a Patient')\n\n    #     patient = self.model(\n    #             name = name,\n    #             firstname=  firstname,\n    #             birthdate = birthdate\n    #             )\n\n    #     print('hello')\n    #     patient.save(using=self.db)\n    #     return patient\n\n    def create(self, **kwargs):\n        \"\"\"\n        enhancement\n        \"\"\"\n        # capwors certain fields\n        for i in self.attrs:\n            kwargs[i] = capwords(kwargs[i])\n\n        # recall base create\n        return super(PatientManager, self).create(**kwargs)\n\n\nclass Patient(models.Model):\n    \"\"\"\n    ase class of patient.&\n    Require on ly 3 fields : name, firstname, birthdate\n    \"\"\"\n    attrs = CAPWORDS_ATTRS\n    # required Field\n    name = models.CharField(max_length=50)\n    firstname = models.CharField(max_length=50)\n    birthdate = models.DateField()\n    a = \"mokmok\"\n\n    # non required fields\n    street = models.CharField(blank=True, max_length=200, default=\"\")\n    postalcode = models.CharField(blank=True, max_length=5, default=\"\")\n    city = models.CharField(max_length=200, blank=True, default=\"\")\n    phonenumber = models.CharField(blank=True, max_length=20, default=\"\")\n    email = models.EmailField(blank=True, max_length=100, default=\"\")\n\n    objects = PatientManager()\n\n    def __str__(self):\n        \"\"\"\n        nice printing Firstname Name\n        \"\"\"\n        return self.firstname + ' ' + self.name\n\n    def save(self, *args, **kwargs):\n        \"\"\"\n        customizing save method, adds :\n        - fore capwords for name et firstanme\n        \"\"\"\n        for i in self.attrs:\n            setattr(self, i, capwords(getattr(self, i)))\n\n        super(Patient, self).save(*args, **kwargs)\n",
-			"file": "unologbase/models/patients.py",
-			"file_size": 2422,
-			"file_write_time": 131502259325620834,
+			"contents": "{\n\t\n\t\"folders\":\n\t[\n\t\t{\n\t\t\t\"path\": \".\"\n\t\t}\n\t],\n\t\"settings\":\n\t{\n\t}\n}\n",
+			"file": "unolog.sublime-project",
+			"file_size": 67,
+			"file_write_time": 131502344830469316,
 			"settings":
 			{
-				"buffer_size": 2422,
+				"buffer_size": 67,
 				"line_ending": "Unix"
 			}
 		},
 		{
 			"contents": "import pytest\nfrom mixer.backend.django import Mixer, mixer\n\nfrom unologbase.models import Patient\n\npytestmark = pytest.mark.django_db\n\n\nclass TestObservation:\n    \"\"\"\n    model Observation tesing\n    \"\"\"\n\n    # def test_str(self, observation_nodb):\n    #     o = observation_nodb\n    #     o.save()\n    #     assert o.__str__() == o.motif\n",
 			"file": "unologbase/tests/test_actes.py",
-			"file_size": 340,
-			"file_write_time": 131502259681700833,
+			"file_size": 375,
+			"file_write_time": 131502348533795817,
 			"settings":
 			{
 				"buffer_size": 340,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "",
-			"file": "/home/jimmy/.config/sublime-text-3/Packages/User/sublime_jedi.sublime-settings",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "unologbase/tests/test_patients.py",
 			"settings":
 			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
+				"buffer_size": 1684,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/home/jimmy/git/dotfiles/README.md",
+			"contents": "{\n    // Used to get the `PYTHONPATH`.\n    // You can set a path to your python interpreter,\n    // for example `/home/user/.virtualenvs/myenv/bin/python)`.\n    //\"python_interpreter\": \"$VIRTUAL_ENV/bin/python\",\n\n    // Additional python package paths.\n    \"python_package_paths\": [],\n\n    // Which function arguments to insert in autocompletion:\n    // \"all\" - all\n    // \"required\" - those with no default value (that are required)\n    // \"\" - none\n    \"auto_complete_function_params\": \"required\",\n\n    // \"debug\", \"error\", \"info\", \"warn\"\n    \"logging_level\": \"warn\",\n\n    // Which completions to show:\n    // \"all\" - both jedi's and sublime's\n    // \"jedi\" - only jedi's\n    // \"default\" - only jedi's if it has something to show, otherwise sublime's\n    \"sublime_completions_visibility\": \"jedi\",\n\n    // how to open goto definition result with ability to show it transient\n    // variation (preview only. it won't have a tab assigned it until modified):\n    // \"single-panel\" - opens a file in same layout (default)\n    // \"single-panel-transient\" - same as above but in transient mode\n    // \"two-panel\" - opens a file in a split to two columns layout\n    // \"two-panel-transient\" - same as above but in transient mode\n    \"sublime_goto_layout\": \"single-panel\",\n\n    // Use hover popup to display the docstring of a function.\n    // \"true\" - replace ST's goto defintion popup by jedi's docstring popup\n    // \"false\" - use ST's default goto definition popup\n    \"enable_tooltip\": true,\n\n    \"auto_complete_triggers\": [{\"selector\": \"source.python\", \"characters\": \".\"}],\n}\n",
+			"file": "/C/Users/christelle/AppData/Roaming/Sublime Text 3/Packages/User/sublime_jedi.sublime-settings",
+			"file_size": 1615,
+			"file_write_time": 131502329931311994,
 			"settings":
 			{
-				"buffer_size": 387,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 1576,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "{\n    // Used to get the `PYTHONPATH`.\n    // You can set a path to your python interpreter,\n    // for example `/home/user/.virtualenvs/myenv/bin/python)`.\n    //\"python_interpreter\": \"$VIRTUAL_ENV/bin/python\",\n\n    // Additional python package paths.\n    \"python_package_paths\": [],\n\n    // Which function arguments to insert in autocompletion:\n    // \"all\" - all\n    // \"required\" - those with no default value (that are required)\n    // \"\" - none\n    \"auto_complete_function_params\": \"required\",\n\n    // \"debug\", \"error\", \"info\", \"warn\"\n    \"logging_level\": \"warn\",\n\n    // Which completions to show:\n    // \"all\" - both jedi's and sublime's\n    // \"jedi\" - only jedi's\n    // \"default\" - only jedi's if it has something to show, otherwise sublime's\n    \"sublime_completions_visibility\": \"jedi\",\n\n    // how to open goto definition result with ability to show it transient\n    // variation (preview only. it won't have a tab assigned it until modified):\n    // \"single-panel\" - opens a file in same layout (default)\n    // \"single-panel-transient\" - same as above but in transient mode\n    // \"two-panel\" - opens a file in a split to two columns layout\n    // \"two-panel-transient\" - same as above but in transient mode\n    \"sublime_goto_layout\": \"single-panel\",\n\n    // Use hover popup to display the docstring of a function.\n    // \"true\" - replace ST's goto defintion popup by jedi's docstring popup\n    // \"false\" - use ST's default goto definition popup\n    \"enable_tooltip\": true,\n\n    //\"auto_complete_triggers\": [{\"selector\": \"source.python\", \"characters\": \".\"}],\n}\n",
-			"file": "/home/jimmy/.config/sublime-text-3/Packages/Jedi - Python autocompletion/sublime_jedi.sublime-settings",
-			"file_size": 1578,
-			"file_write_time": 131502258281620837,
+			"contents": " {\n\t\"auto_python_builder_enabled\": false,\n    //\"disable_anaconda_completion\": true,\n    \"anaconda_linting\": false,\n    \"auto_unload_conflictive_plugins\": false,\n\n\n\n\n}\n",
+			"file": "/C/Users/christelle/AppData/Roaming/Sublime Text 3/Packages/User/Anaconda.sublime-settings",
+			"file_size": 178,
+			"file_write_time": 131502345632970722,
 			"settings":
 			{
-				"buffer_size": 1578,
-				"line_ending": "Unix"
+				"buffer_size": 168,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -97,10 +111,62 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 364.0,
-		"last_filter": "packde",
+		"height": 170.0,
+		"last_filter": "disabl",
 		"selected_items":
 		[
+			[
+				"disabl",
+				"Package Control: Disable Package"
+			],
+			[
+				"enabl",
+				"Package Control: Enable Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"them",
+				"UI: Select Theme"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
 			[
 				"packde",
 				"Package Control: Disable Package"
@@ -138,10 +204,6 @@
 				"Django: Run Server"
 			],
 			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
 				"gitgutt",
 				"GitGutter: Compare Against HEAD"
 			],
@@ -160,14 +222,6 @@
 			[
 				"git",
 				"Git: Commit"
-			],
-			[
-				"instal",
-				"Package Control: Install Package"
-			],
-			[
-				"disa",
-				"Package Control: Disable Package"
 			],
 			[
 				"INSTALL",
@@ -252,10 +306,6 @@
 			[
 				"vi",
 				"Virtualenv: Activate"
-			],
-			[
-				"remove",
-				"Package Control: Remove Package"
 			],
 			[
 				"Django:vi",
@@ -352,10 +402,6 @@
 			[
 				"auto",
 				"User: Python PEP8 Autoformat"
-			],
-			[
-				"remo",
-				"Package Control: Remove Package"
 			],
 			[
 				"sche",
@@ -538,7 +584,7 @@
 				"Package Control: List Packages"
 			]
 		],
-		"width": 497.0
+		"width": 428.0
 	},
 	"console":
 	{
@@ -571,12 +617,19 @@
 	},
 	"expanded_folders":
 	[
-		"/home/jimmy/dit/unolog",
-		"/home/jimmy/dit/unolog/unologbase",
-		"/home/jimmy/dit/unolog/unologbase/tests"
+		"/C/Users/christelle/jimmy/unolog",
+		"/C/Users/christelle/jimmy/unolog/unologbase",
+		"/C/Users/christelle/jimmy/unolog/unologbase/tests"
 	],
 	"file_history":
 	[
+		"/C/Users/christelle/AppData/Roaming/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/C/Users/christelle/jimmy/unolog/unologbase/tests/test_actes.py",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/sublime_jedi.sublime-settings",
+		"/C/Users/christelle/jimmy/unolog/unologbase/tests/test_patients.py",
+		"/C/Users/christelle/jimmy/unolog/unologbase/models/patients.py",
+		"/home/jimmy/.config/sublime-text-3/Packages/Jedi - Python autocompletion/sublime_jedi.sublime-settings",
+		"/home/jimmy/git/dotfiles/README.md",
 		"/home/jimmy/dit/unolog/unologbase/tests/test_patients.py",
 		"/home/jimmy/.config/sublime-text-3/Packages/User/PyYapf.sublime-settings",
 		"/home/jimmy/.config/sublime-text-3/Packages/PyYapf Python Formatter/PyYapf.sublime-settings",
@@ -679,39 +732,37 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "unologbase/models/patients.py",
+					"file": "unolog.sublime-project",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2422,
+						"buffer_size": 67,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1180,
-								1180
+								3,
+								3
 							]
 						],
 						"settings":
 						{
 							"git_gutter_is_enabled": true,
-							"show_definitions": false,
-							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -727,15 +778,56 @@
 						"selection":
 						[
 							[
-								206,
-								206
+								143,
+								158
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "unologbase/tests/test_patients.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1684,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								270,
+								270
 							]
 						],
 						"settings":
 						{
 							"git_gutter_is_enabled": true,
-							"show_definitions": false,
-							"syntax": "Packages/MagicPython/grammars/MagicPython.tmLanguage"
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -743,28 +835,36 @@
 					},
 					"stack_index": 0,
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
 				{
-					"buffer": 2,
-					"file": "/home/jimmy/.config/sublime-text-3/Packages/User/sublime_jedi.sublime-settings",
+					"buffer": 3,
+					"file": "/C/Users/christelle/AppData/Roaming/Sublime Text 3/Packages/User/sublime_jedi.sublime-settings",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 1576,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								795,
+								795
 							]
 						],
 						"settings":
 						{
 							"git_gutter_is_enabled": false,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -774,63 +874,26 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "/home/jimmy/git/dotfiles/README.md",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 387,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								387,
-								387
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
 					"buffer": 4,
-					"file": "/home/jimmy/.config/sublime-text-3/Packages/Jedi - Python autocompletion/sublime_jedi.sublime-settings",
+					"file": "/C/Users/christelle/AppData/Roaming/Sublime Text 3/Packages/User/Anaconda.sublime-settings",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1578,
+						"buffer_size": 168,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1498,
-								1498
+								24,
+								24
 							]
 						],
 						"settings":
 						{
 							"git_gutter_is_enabled": false,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

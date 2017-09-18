@@ -1,3 +1,5 @@
+import os.path
+
 import pytest
 from mixer.backend.django import Mixer, mixer
 
