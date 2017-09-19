@@ -1,4 +1,5 @@
 {
+	
 	"folders":
 	[
 		{
@@ -7,7 +8,5 @@
 	],
 	"settings":
 	{
-		//"python_interpreter": "/home/jimmy/.env/unolog-Z3dpH134/bin/python"
-	},
-	//"virtualenv": "/home/jimmy/.env/unolog-Z3dpH134"
+	}
 }
