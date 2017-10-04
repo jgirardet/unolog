@@ -37,8 +37,7 @@ Base classe fo testing patient views
 
         pa = patient_dict
 
-        resp = apiclient.post(
-            reverse('patient-list'), data=pa, format='json')
+        resp = apiclient.post(reverse('patient-list'), data=pa, format='json')
         # import ipdb; ipdb.set_trace()
         p = Patient.objects.get(pk=resp.data['pk'])
         [p.__dict__.pop(k) for k in ('id', '_state')]

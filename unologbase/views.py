@@ -4,9 +4,7 @@ from rest_framework import viewsets
 from unologbase.models import Patient, Observation
 from unologbase.serializers import PatientSerializer, ObservationSerializer
 
-
 # Create your views here.
-
 
 
 class PatientViewSet(viewsets.ModelViewSet):
@@ -15,6 +13,7 @@ class PatientViewSet(viewsets.ModelViewSet):
     """
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
+
 
 class ObservationViewSet(viewsets.ModelViewSet):
     """

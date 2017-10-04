@@ -20,8 +20,8 @@ class BaseActe(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
-                              on_delete=models.PROTECT)
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
 
     class Meta:
         abstract = True

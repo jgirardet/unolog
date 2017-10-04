@@ -15,7 +15,7 @@ class PatientSerializer(serializers.ModelSerializer):
 
         model = Patient
         fields = ('pk', 'name', 'firstname', 'birthdate', 'street',
-                  'postalcode', 'city', 'phonenumber', 'email',)
+                  'postalcode', 'city', 'phonenumber', 'email', )
 
     def validate_birthdate(self, value):
         """
@@ -61,6 +61,7 @@ class ObservationSerializer(serializers.ModelSerializer):
     """
     Observation serializer
     """
+
     class Meta:
         model = Observation
         fields = '__all__'

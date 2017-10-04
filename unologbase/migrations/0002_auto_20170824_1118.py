@@ -20,11 +20,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='observation',
             name='owner',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL),
-        ),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                to=settings.AUTH_USER_MODEL), ),
         migrations.AddField(
             model_name='observation',
             name='patient',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='unologbase.Patient'),
-        ),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to='unologbase.Patient'), ),
     ]
