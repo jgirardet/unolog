@@ -1,0 +1,581 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"del",
+				"delete_data\tparam"
+			],
+			[
+				"Remove",
+				"remove_torrent\tfunction"
+			],
+			[
+				"le",
+				"leclient\tstatement"
+			],
+			[
+				"tourrent",
+				"tourrentbot\tmodule"
+			],
+			[
+				"bo",
+				"Bot"
+			],
+			[
+				"se",
+				"sendMessage"
+			],
+			[
+				"T",
+				"TourrentBot"
+			],
+			[
+				"Inlin",
+				"InlineKeyboardMarkup\tclass"
+			],
+			[
+				"INl",
+				"InlineKeyboardButton\tclass"
+			],
+			[
+				"tor",
+				"tor_list\tstatement"
+			],
+			[
+				"en",
+				"envoie_les_propositions_choix\tfunction"
+			],
+			[
+				"down",
+				"downloaded_fichier\tstatement"
+			],
+			[
+				"do",
+				"downloaded_filchier\tstatement"
+			],
+			[
+				"st",
+				"status_code\tstatement"
+			],
+			[
+				"tou",
+				"tourrentbot\tmodule"
+			],
+			[
+				"env",
+				"envoie_via_telegram\tfunction"
+			],
+			[
+				"list",
+				"list_of_names\tparam"
+			],
+			[
+				"yg",
+				"yg_params\tstatement"
+			],
+			[
+				"t",
+				"torrent"
+			],
+			[
+				"dwon",
+				"download_dot_torrent_file\tfunction"
+			],
+			[
+				"YG",
+				"YG_LOGOUT_URL\tstatement"
+			],
+			[
+				"is",
+				"issubset\tfunction"
+			],
+			[
+				"Ke",
+				"KeyError\tclass"
+			],
+			[
+				"__",
+				"__file__\tinstance"
+			],
+			[
+				"con",
+				"convert_name_to_download_link\tfunction"
+			],
+			[
+				"YG_",
+				"YG_DOWNLOAD_URL\tstatement"
+			],
+			[
+				"YG_D",
+				"YG_DOWNLOAD_URL\tstatement"
+			],
+			[
+				"a",
+				"abc\tmodule"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 214.0,
+		"last_filter": "push",
+		"selected_items":
+		[
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"q",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"pytes",
+				"PyTest: Run: All"
+			],
+			[
+				"pyte",
+				"PyTest: Run: All"
+			],
+			[
+				"pus",
+				"Git: Push Current Branch"
+			],
+			[
+				"merge",
+				"Git: Merge Branch"
+			],
+			[
+				"chan",
+				"Git: Change Branch"
+			],
+			[
+				"ranc",
+				"Git: New Branch"
+			],
+			[
+				"pu",
+				"Git: Push Current Branch"
+			],
+			[
+				"git",
+				"GitGutter: Compare Against HEAD"
+			],
+			[
+				"gitgu",
+				"GitGutter: Compare Against Commit"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"gitgut",
+				"GitGutter: Compare Against HEAD"
+			],
+			[
+				"diff",
+				"Git: Diff Tool All"
+			],
+			[
+				"de",
+				"Git: Delete Branch"
+			],
+			[
+				"gitg",
+				"GitGutter: Compare Against Origin"
+			],
+			[
+				"pull",
+				"Git: Pull Current Branch"
+			],
+			[
+				"gitgutt",
+				"GitGutter: Compare Against Origin"
+			],
+			[
+				"cha",
+				"Git: Change Branch"
+			],
+			[
+				"mer",
+				"Git: Merge Branch"
+			],
+			[
+				"git pu",
+				"Git: Push"
+			],
+			[
+				"gitq",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"setv",
+				"Django: Set Virtual Environment"
+			],
+			[
+				"sta",
+				"Git: Status"
+			],
+			[
+				"change",
+				"Git: Change Branch"
+			],
+			[
+				"ch",
+				"Git: Checkout Current File"
+			],
+			[
+				"bran",
+				"Git: New Branch"
+			],
+			[
+				"virt",
+				"Virtualenv: Activate"
+			],
+			[
+				"sort",
+				"ImportSort: Sort imports"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"ad",
+				"Git: Add All"
+			],
+			[
+				"add",
+				"Git: Add All"
+			],
+			[
+				"pul",
+				"Git: Pull Using Rebase"
+			],
+			[
+				"qui",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"branch",
+				"Git: Push Current Branch"
+			],
+			[
+				"git brn",
+				"Git: New Branch"
+			],
+			[
+				"dele",
+				"Git: Delete Branch"
+			],
+			[
+				"gut",
+				"GitGutter: Compare Against Commit"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"brach",
+				"Git: New Branch"
+			],
+			[
+				"merg",
+				"Git: Merge Branch"
+			],
+			[
+				"dif",
+				"Git: Diff Current File"
+			],
+			[
+				"res",
+				"Git: Reset (unstage) Current File"
+			],
+			[
+				"quic",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"chec",
+				"Git: Change Branch"
+			],
+			[
+				"quick",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"git: check",
+				"Git: Checkout Current File"
+			],
+			[
+				"git comm",
+				"Git: Commit"
+			],
+			[
+				"git a",
+				"Git: Add All"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"packli",
+				"Package Control: List Packages"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"rename",
+				"File: Rename"
+			],
+			[
+				"test",
+				"Anaconda: Run Current File Tests"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"comm",
+				"Git: Commit"
+			]
+		],
+		"width": 497.0
+	},
+	"console":
+	{
+		"height": 81.0,
+		"history":
+		[
+			"sublime.log_commands(False)",
+			"fzefzef",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"import console",
+			"console.log",
+			"import log",
+			"log"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/jimmy/seafile/dev/unolog"
+	],
+	"file_history":
+	[
+		"/home/jimmy/seafile/dev/unolog/unologbase/mvdvodels.py",
+		"/home/jimmy/seafile/dev/lequipeur/lequipeur/tests/conftest.py",
+		"/home/jimmy/seafile/dev/mock/test_mock.py",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/python_imports_sorter.sublime-settings",
+		"/home/jimmy/seafile/dev/lequipeur/lequipeur/tests/test_yg.py",
+		"/home/jimmy/seafile/dev/lequipeur/lequipeur/tests/test_tourrent.py",
+		"/home/jimmy/seafile/dev/lequipeur/old/dev/tourrent.py",
+		"/home/jimmy/seafile/dev/lequipeur/lequipeur/tourrentbot.py",
+		"/home/jimmy/seafile/dev/lequipeur/tourrent.sh",
+		"/home/jimmy/seafile/dev/lequipeur/launch.py",
+		"/home/jimmy/seafile/dev/lequipeur/lequipeur/client.py",
+		"/home/jimmy/seafile/dev/lequipeur/lequipeur/yg.py",
+		"/home/jimmy/seafile/dev/lequipeur/lequipeur.sublime-project",
+		"/home/jimmy/seafile/dev/lequipeur/lequipeur/tourrent.py",
+		"/home/jimmy/seafile/dev/lequipeur/README.md",
+		"/home/jimmy/seafile/dev/lequipeur/old/v2/tourrentbot.py",
+		"/home/jimmy/.config/sublime-text-3/Packages/Python Imports Sorter/Default.sublime-settings",
+		"/home/jimmy/Seafile/dev/lequipeur/bitbucket-pipelines.yml",
+		"/home/jimmy/Seafile/dev/lequipeur/todo",
+		"/home/jimmy/seafile/dev/lequipeur/lequipeur/tests/ygg.html",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/client.py",
+		"/home/jimmy/Seafile/dev/lequipeur/setup.py",
+		"/home/jimmy/Seafile/dev/lequipeur/tox.ini",
+		"/home/jimmy/Seafile/dev/lequipeur/.circleci/config.yml",
+		"/home/jimmy/Seafile/dev/lequipeur/requirements.txt",
+		"/home/jimmy/.env/lequipeur--IVPCM_Y/lib/python3.5/site-packages/transmissionrpc/__init__.py",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/tests/oooconftest.py",
+		"/home/jimmy/.env/lequipeur--IVPCM_Y/lib/python3.5/collections/__init__.py",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/tests/test_rien.py",
+		"/home/jimmy/Seafile/dev/lequipeur/pytest.ini",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/tests/conftest.py",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/tests/oootest_tourrent.py",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/tests/ttest_rien.py",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/v3/constantes.py",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/v3/tourrent.py",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/v3/tests/conftest.py",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/v3/tests/test_tourrent.py",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur.sublime-project",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/v3/test/Yggtorrent.html",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/v3/test/test_tourrent.py",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/v3/test/conftest.py",
+		"/home/jimmy/.config/sublime-text-3/Packages/Anaconda/Default (Linux).sublime-keymap",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/v3/test_tourrent.py",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/jimmy/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/jimmy/Seafile/dev/lequipeur/lequipeur/v3/conftest.py",
+		"/home/jimmy/.config/sublime-text-3/Packages/User/JSON.sublime-settings"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 102.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 102.0
+	},
+	"pinned_build_system": "",
+	"project": "untitled.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 211.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
