@@ -104,4 +104,4 @@ ENV/
 db.sqlite3
 
 #sublime
-.sublime-workspace
+unolog.sublime-workspace
