@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/jgirardet/unolog.svg?branch=master)](https://travis-ci.org/jgirardet/unolog)
+
+
 # unolog
 Un NOuveau LOgiciel de Gestion de patient
 
