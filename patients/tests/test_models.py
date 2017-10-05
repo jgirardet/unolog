@@ -3,7 +3,7 @@ from string import capwords
 import pytest
 from mixer.backend.django import Mixer
 
-from unologbase.models import Patient
+from patients.models import Patient
 
 pytestmark = pytest.mark.django_db
 

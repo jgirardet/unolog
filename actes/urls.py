@@ -1,10 +1,10 @@
-from django.conf.urls import url, include
+from django.conf.urls import include, url
 from rest_framework.routers import SimpleRouter
-from unologbase.views import PatientViewSet, ObservationViewSet
+
+from actes.views import ObservationViewSet
 
 router = SimpleRouter()
 
-router.register(r'patients', PatientViewSet)
 router.register(r'observations', ObservationViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),

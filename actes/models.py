@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 
+from patients.models import Patient
+
 
 class BaseActeManager(models.Manager):
     """
@@ -17,7 +19,7 @@ class BaseActe(models.Model):
     Base Abstract class for for differnets actions
     made by usej
     """
-    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(

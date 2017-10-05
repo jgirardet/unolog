@@ -1,11 +1,10 @@
 import random
 
 import pytest
-
 from mixer.backend.django import Mixer, mixer
-from unologbase.models import (
-    Patient,
-    Observation, )
+
+from actes.models import Observation
+from patients.models import Patient
 
 
 @pytest.fixture(scope='session', autouse=True)

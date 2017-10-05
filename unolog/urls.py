@@ -13,10 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import include, url
 from django.contrib import admin
+
+# add each api app to apipatterns
+api_patterns = ([
+    url(r'', include('patients.urls')),
+    url(r'', include('actes.urls')),
+], 'api')  # api is the namespace
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include('unologbase.urls')),
+    url(r'^api/', include(api_patterns)),
 ]

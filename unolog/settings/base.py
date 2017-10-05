@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'unologbase',
+    'patients',
+    'actes',
     'unousers',
     'django_extensions',
 ]

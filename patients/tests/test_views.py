@@ -8,9 +8,10 @@ from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import (APIClient, APIRequestFactory,
                                  force_authenticate)
-from unologbase.models import Patient
-from unologbase.serializers import PatientSerializer
-from unologbase.views import PatientViewSet
+
+from patients.models import Patient
+from patients.serializers import PatientSerializer
+from patients.views import PatientViewSet
 
 # from conftest import apiclient
 
@@ -28,7 +29,7 @@ Base classe fo testing patient views
     def test_retrieve_patient_list(self, apiclient):
 
         patients = mixer.cycle(20).blend(Patient)
-        resp = apiclient.get(reverse('patient-list'))
+        resp = apiclient.get(reverse('api:patient-list'))
         patients = Patient.objects.all()
         ser = PatientSerializer(patients, many=True)
         assert resp.data == ser.data
@@ -37,7 +38,8 @@ Base classe fo testing patient views
 
         pa = patient_dict
 
-        resp = apiclient.post(reverse('patient-list'), data=pa, format='json')
+        resp = apiclient.post(
+            reverse('api:patient-list'), data=pa, format='json')
         # import ipdb; ipdb.set_trace()
         p = Patient.objects.get(pk=resp.data['pk'])
         [p.__dict__.pop(k) for k in ('id', '_state')]

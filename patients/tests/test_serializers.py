@@ -9,8 +9,8 @@ from rest_framework.reverse import reverse
 from rest_framework.test import (APIClient, APIRequestFactory,
                                  force_authenticate)
 
-from unologbase.models import Patient
-from unologbase.serializers import PatientSerializer
+from patients.models import Patient
+from patients.serializers import PatientSerializer
 
 pytestmark = pytest.mark.django_db
 
