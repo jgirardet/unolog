@@ -56,7 +56,6 @@ class Patient(models.Model):
     name = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50)
     birthdate = models.DateField()
-    a = "mokmok"
 
     # non required fields
     street = models.CharField(blank=True, max_length=200, default="")
