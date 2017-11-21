@@ -1,9 +1,8 @@
 import datetime
 from string import capwords
 
-from rest_framework import serializers
-
 from patients.models import Patient
+from rest_framework import serializers
 
 
 class PatientSerializer(serializers.ModelSerializer):
@@ -19,11 +18,13 @@ class PatientSerializer(serializers.ModelSerializer):
             'name',
             'firstname',
             'birthdate',
+            'sexe',
             'street',
             'postalcode',
             'city',
             'phonenumber',
-            'email', )
+            'email',
+        )
 
     def validate_birthdate(self, value):
         """
@@ -51,6 +52,16 @@ class PatientSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 "phone number must starts with 0 or +")
         return value
+
+    def validate(self, data):
+        """
+        check sexe is choiced
+        """
+        try:
+            data['sexe'] == True
+        except KeyError:
+            raise serializers.ValidationError('jomlj')
+        return data
 
     # def create(self, validated_data):
     #   """
