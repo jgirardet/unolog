@@ -13,7 +13,7 @@ Un NOuveau LOgiciel de Gestion de patient
 - model base act
   - champs de base
   - liaison en foreignKey
-  - modification 
+  - modification
 - extension de base act
   - observation
   - ordonnance
@@ -34,3 +34,7 @@ time et capwors des noms sans effet
   creation ou modification.
 _ on ne sauve rien sans passer par objects create ou update
 
+## mise en place
+make migrations
+migrate
+createsuperuser
