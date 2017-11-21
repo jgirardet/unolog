@@ -1,12 +1,13 @@
 import random
 
 import pytest
+from actes.models import Observation
 from django.contrib.auth import get_user_model
 from mixer.backend.django import Mixer, mixer
-
-from actes.models import Observation
 from patients.models import Patient
 from pytest_django.fixtures import db
+
+
 """
 PAtients
 """

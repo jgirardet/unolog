@@ -96,10 +96,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME':
         'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
-    {
-        'NAME':
-        'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
+    # {
+    #     'NAME':
+    #     'django.contrib.auth.password_validation.MinimumLengthValidator',
+    # },
     {
         'NAME':
         'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -127,6 +127,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-
 
 CORS_ORIGIN_ALLOW_ALL = True
