@@ -13,18 +13,8 @@ class PatientSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = Patient
-        fields = (
-            'pk',
-            'name',
-            'firstname',
-            'birthdate',
-            'sexe',
-            'street',
-            'postalcode',
-            'city',
-            'phonenumber',
-            'email',
-        )
+        fields = ('pk', 'name', 'firstname', 'birthdate', 'sexe', 'street',
+                  'postalcode', 'city', 'phonenumber', 'email', )
 
     def validate_birthdate(self, value):
         """
