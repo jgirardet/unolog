@@ -46,7 +46,3 @@ class TestPatientSerializer:
         s = PatientSerializer(data=a)
         with pytest.raises(serializers.ValidationError):
             s.is_valid(raise_exception=True), " sould start with + or 0"
-
-    def test_fix(self, apiclient):
-        r = apiclient.get('/api')
-        assert r.status_code == 404

@@ -56,7 +56,7 @@ class Patient(models.Model):
     name = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50)
     birthdate = models.DateField()
-    sexe = models.BooleanField()  #True if women else false
+    sexe = models.BooleanField(default=True)  #True if women else false
     # non required fields
     street = models.CharField(blank=True, max_length=200, default="")
     postalcode = models.CharField(blank=True, max_length=5, default="")

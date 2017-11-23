@@ -1,9 +1,9 @@
 from django.conf.urls import include, url
-from rest_framework.routers import SimpleRouter
+from rest_framework.routers import DefaultRouter
 
 from patients.views import PatientViewSet
 
-router = SimpleRouter()
+router = DefaultRouter()
 
 router.register(r'patients', PatientViewSet)
 urlpatterns = [
