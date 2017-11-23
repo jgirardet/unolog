@@ -31,7 +31,9 @@ Base classe fo testing patient views
         patients = mixer.cycle(20).blend(Patient)
         resp = apiclient.get(reverse('patient-list'))
         patients = Patient.objects.all()
-        ser = PatientSerializer(patients, many=True)
+        for r in resp.data:
+            r['url'] = r['url'].split('http://testserver')[1] #remove base url bescause request=none = relativeurl
+        ser = PatientSerializer(patients, many=True, context={'request': None})
         assert resp.data == ser.data
 
     def test_response_create_patient(self, apiclient, patient_dict):

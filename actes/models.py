@@ -19,11 +19,13 @@ class BaseActe(models.Model):
     Base Abstract class for for differnets actions
     made by usej
     """
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, related_name="actes", on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+        settings.AUTH_USER_MODEL,
+        related_name='actes',
+        on_delete=models.PROTECT)
 
     class Meta:
         abstract = True

@@ -6,7 +6,7 @@ from rest_framework import serializers
 from patients.models import Patient
 
 
-class PatientSerializer(serializers.ModelSerializer):
+class PatientSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer of patient model
     """
@@ -16,6 +16,7 @@ class PatientSerializer(serializers.ModelSerializer):
         model = Patient
         fields = (
             'pk',
+            'url',
             'name',
             'firstname',
             'birthdate',
@@ -24,7 +25,8 @@ class PatientSerializer(serializers.ModelSerializer):
             'postalcode',
             'city',
             'phonenumber',
-            'email', )
+            'email',
+            )
 
     def validate_birthdate(self, value):
         """

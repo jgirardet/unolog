@@ -18,10 +18,12 @@ from rest_framework.routers import DefaultRouter
 
 from actes.views import ObservationViewSet
 from patients.views import PatientViewSet
+from unousers.views import UnoUserViewSet
 
 router = DefaultRouter()
 router.register('patients', PatientViewSet)
 router.register('observations', ObservationViewSet)
+router.register('users', UnoUserViewSet)
 
 urlpatterns = []
 urlpatterns += router.urls
