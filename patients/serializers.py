@@ -1,9 +1,8 @@
 import datetime
 from string import capwords
 
-from rest_framework import serializers
-
 from patients.models import Patient
+from rest_framework import serializers
 
 
 class PatientSerializer(serializers.HyperlinkedModelSerializer):
@@ -14,19 +13,8 @@ class PatientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
 
         model = Patient
-        fields = (
-            'pk',
-            'url',
-            'name',
-            'firstname',
-            'birthdate',
-            'sexe',
-            'street',
-            'postalcode',
-            'city',
-            'phonenumber',
-            'email',
-            )
+        fields = ('pk', 'url', 'name', 'firstname', 'birthdate', 'sexe',
+                  'street', 'postalcode', 'city', 'phonenumber', 'email', )
 
     def validate_birthdate(self, value):
         """
