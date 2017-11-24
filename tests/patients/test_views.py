@@ -4,14 +4,13 @@ import pytest
 # from hypothesis import strategies as st, settings
 # from hypothesis import assume, given
 from mixer.backend.django import Mixer, mixer
+from patients.models import Patient
+from patients.serializers import PatientSerializer
+from patients.views import PatientViewSet
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import (APIClient, APIRequestFactory,
                                  force_authenticate)
-
-from patients.models import Patient
-from patients.serializers import PatientSerializer
-from patients.views import PatientViewSet
 
 # from conftest import apiclient
 
@@ -31,9 +30,8 @@ Base classe fo testing patient views
         patients = mixer.cycle(20).blend(Patient)
         resp = apiclient.get(reverse('patient-list'))
         patients = Patient.objects.all()
-        for r in resp.data:
-            r['url'] = r['url'].split('http://testserver')[1] #remove base url bescause request=none = relativeurl
-        ser = PatientSerializer(patients, many=True, context={'request': None})
+        req = APIRequestFactory().get(reverse('patient-list'))
+        ser = PatientSerializer(patients, many=True, context={'request': req})
         assert resp.data == ser.data
 
     def test_response_create_patient(self, apiclient, patient_dict):

@@ -1,6 +1,7 @@
 import datetime
 from string import capwords
 
+from actes.models import Observation
 from patients.models import Patient
 from rest_framework import serializers
 
@@ -9,6 +10,8 @@ class PatientSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer of patient model
     """
+    observations = serializers.HyperlinkedRelatedField(
+        many=True, view_name='observation-detail', read_only=True)
 
     class Meta:
 
