@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fb8ba3cac3f44ce58e4ebb44eb91faa042e1e6ec4e4f456d5caf1a9f8a454f7e"
+            "sha256": "e5d6617e0a8340de14c1aa508aa197963c786eb0c4b228faa9541d6344f2ed0e"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -213,9 +213,9 @@
         },
         "pluggy": {
             "hashes": [
-                "sha256:bd60171dbb250fdebafad46ed16d97065369da40568ae948ef7117eee8536e94"
+                "sha256:7f8ae7f5bdf75671a718d2daf0a64b7885f74510bcd98b1a0bb420eb9a9d0cff"
             ],
-            "version": "==0.5.2"
+            "version": "==0.6.0"
         },
         "prompt-toolkit": {
             "hashes": [
@@ -288,6 +288,12 @@
                 "sha256:038ccc5a9daa1b1b0eb739ab7dce54e495811eca5ea3af4815a2a3ac45152309"
             ],
             "version": "==3.1.2"
+        },
+        "pytest-pythonpath": {
+            "hashes": [
+                "sha256:2d506b8d7dbc2535a16c888211b7319ad32b3e73444bd9dbb1dd19427a6c7414"
+            ],
+            "version": "==0.7.1"
         },
         "python-dateutil": {
             "hashes": [

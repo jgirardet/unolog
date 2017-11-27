@@ -1,8 +1,5 @@
 import os
 import random
-import sys
-
-sys.path.append(os.getcwd() + '/src')
 
 import pytest
 from actes.models import Observation
@@ -41,8 +38,7 @@ def patient_dict():
         city=mixer.FAKE,
         postalcode=str(random.randrange(1, 99999)),
         phonenumber='0' + str(random.randrange(100000000, 899999999)),
-        email=mixer.FAKE,
-    )
+        email=mixer.FAKE, )
 
     p.__dict__.pop('_state')
     p.__dict__.pop('id')
