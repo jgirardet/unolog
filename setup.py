@@ -29,6 +29,12 @@ if sys.argv[-1] == 'tag':
     os.system("git push --tags")
     sys.exit()
 
+if sys.argv[-1] == 'pipenv':
+    print("Installation du virtual env via pipenv")
+    os.system("pipenv install --dev --three")
+    os.system("pipenv install django")
+    sys.exit()
+
 setup(
     name='Unolog',
     version=version,
