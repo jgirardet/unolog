@@ -1,19 +1,17 @@
 [[source]]
 
-url = "https://pypi.python.org/simple"
-name = "pypi"
 verify_ssl = true
-
-
-[requires]
-
-python_version = "3.5"
+url = "https://pypi.python.org/simple"
 
 
 [packages]
 
-pytz = "*"
+
 djangorestframework = "*"
+
+
+[dev-packages]
+
 mixer = "*"
 django-extensions = "*"
 ipdb = "*"
@@ -25,7 +23,3 @@ pytest-django = "*"
 django-cors-headers = "*"
 python-language-server = "*"
 pytest-pythonpath = "*"
-django = "*"
-
-
-[dev-packages]
