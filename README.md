@@ -35,6 +35,7 @@ time et capwors des noms sans effet
 _ on ne sauve rien sans passer par objects create ou update
 
 ## mise en place
+python setup.py pipenv
 make migrations
 migrate
 createsuperuser
