@@ -1,3 +1,5 @@
+from string import capwords
+
 import pytest
 # from django.contrib.auth import get_user_model
 # from django.contrib.auth.models import AnonymousUser, User
@@ -36,11 +38,26 @@ Base classe fo testing patient views
 
     def test_response_create_patient(self, apiclient, patient_dict):
 
-        pa = patient_dict
+        for i in Patient.attrs: #turn capsword what is not saved
+            patient_dict[i] = capwords(patient_dict[i])
 
-        resp = apiclient.post(reverse('patient-list'), data=pa, format='json')
+        resp = apiclient.post(
+            reverse('patient-list'), data=patient_dict, format='json')
         # import ipdb; ipdb.set_trace()
         p = Patient.objects.get(pk=resp.data['pk'])
         [p.__dict__.pop(k) for k in ('id', '_state')]
-        assert p.__dict__ == pa
+        assert p.__dict__ == patient_dict
+        assert resp.status_code == status.HTTP_201_CREATED
+
+    def test_caps_test(self, apiclient, patient_dict):
+        patient_dict['name'] = "Rebecca Ramirez DDS"
+        for i in Patient.attrs:
+            patient_dict[i] = capwords(patient_dict[i])
+
+        resp = apiclient.post(
+            reverse('patient-list'), data=patient_dict, format='json')
+        # import ipdb; ipdb.set_trace()
+        p = Patient.objects.get(pk=resp.data['pk'])
+        [p.__dict__.pop(k) for k in ('id', '_state')]
+        assert p.__dict__ == patient_dict
         assert resp.status_code == status.HTTP_201_CREATED
