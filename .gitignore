@@ -102,6 +102,3 @@ ENV/
 
 #sqlite
 db.sqlite3
-
-# pipfile
-Pipfile.lock

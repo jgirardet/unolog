@@ -31,7 +31,7 @@ if sys.argv[-1] == 'tag':
 
 if sys.argv[-1] == 'pipenv':
     print("Installation du virtual env via pipenv")
-    os.system("pipenv install --dev --three")
+    os.system("pipenv install --dev --three --skip-lock")
     os.system("pipenv install django")
     sys.exit()
 
