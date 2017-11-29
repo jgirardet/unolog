@@ -5,14 +5,11 @@ import pytest
 # from django.contrib.auth.models import AnonymousUser, User
 # from hypothesis import strategies as st, settings
 # from hypothesis import assume, given
-from mixer.backend.django import Mixer, mixer
 from patients.models import Patient
 from patients.serializers import PatientSerializer
-from patients.views import PatientViewSet
 from rest_framework import status
 from rest_framework.reverse import reverse
-from rest_framework.test import (APIClient, APIRequestFactory,
-                                 force_authenticate)
+from rest_framework.test import APIRequestFactory
 
 # from conftest import apiclient
 

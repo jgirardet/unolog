@@ -10,4 +10,4 @@ class UnoUserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = UnoUser
-        fields = ("username", "pk", "observations")
+        fields = ("username", "pk", "observations", "statut")
