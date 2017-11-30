@@ -6,8 +6,10 @@ from actes.models import Observation
 from django.contrib.auth import get_user_model
 from mixer.backend.django import Mixer, mixer
 from patients.models import Patient
-from pytest_django.fixtures import db
 
+# from pytest_django.fixtures import db
+
+User = get_user_model()
 
 # assert 1 == sys.path
 """
@@ -15,13 +17,17 @@ PAtients
 """
 
 
-@pytest.fixture(scope='session', autouse=True)
-def apiclient():
+@pytest.fixture(scope='function', autouse=True)
+def apiclient(db):
     """
     DRF apiclient
     """
+    model = get_user_model()
+    u = mixer.blend(model)
     from rest_framework.test import APIClient
-    return APIClient()
+    client = APIClient()
+    client.force_authenticate(user=u)
+    return client
 
 
 @pytest.fixture(autouse=True, scope='function')

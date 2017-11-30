@@ -11,3 +11,5 @@ class UnoUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = UnoUser
         fields = ("username", "pk", "observations", "statut")
+
+    #def validate

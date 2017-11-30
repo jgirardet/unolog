@@ -1,6 +1,7 @@
 from string import capwords
 
 import pytest
+from mixer.backend.django import mixer
 # from django.contrib.auth import get_user_model
 # from django.contrib.auth.models import AnonymousUser, User
 # from hypothesis import strategies as st, settings
@@ -35,7 +36,7 @@ Base classe fo testing patient views
 
     def test_response_create_patient(self, apiclient, patient_dict):
 
-        for i in Patient.attrs: #turn capsword what is not saved
+        for i in Patient.attrs:  #turn capsword what is not saved
             patient_dict[i] = capwords(patient_dict[i])
 
         resp = apiclient.post(

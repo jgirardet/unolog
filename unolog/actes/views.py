@@ -1,7 +1,7 @@
-from rest_framework import viewsets
-
 from actes.models import Observation
 from actes.serializers import ObservationSerializer
+from rest_framework import viewsets
+
 
 # Create your views here.
 

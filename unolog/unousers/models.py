@@ -20,7 +20,7 @@ class UnoUser(AbstractUser):
         (REMPLACANT, "Remplaçant"),
     )
 
-    statut = models.CharField(max_length=20)
+    statut = models.CharField(max_length=20, choices=STATUT)
 
 
 """
