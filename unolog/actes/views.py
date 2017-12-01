@@ -4,12 +4,9 @@ from .models import Observation
 from .permissions import OnlyOwnerCanEdit
 from .serializers import ObservationSerializer
 
-# Create your views here.
-
 
 class ActeViewSet(viewsets.ModelViewSet):
-    """
-    base common viewset for ActeS
+    """ base common viewset for ActeS
     """
     permission_classes = (OnlyOwnerCanEdit, )
 
