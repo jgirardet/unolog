@@ -6,7 +6,7 @@ Un NOuveau LOgiciel de Gestion de patient
 
 
 
-## TODO 
+## TODO
 - patient
   - base method : ~~list~~, ~~update, partial update, remove, create~~
   - add more base fields : ~~street~~, ~~city~~, ~~tel~~, ~~email~~
@@ -30,6 +30,5 @@ _ chaque creation se fait via les serializers
 
 ## mise en place
 python setup.py pipenv
-make migrations
-migrate
-createsuperuser
+./launch.py mm //mk migration + migrate
+./launch.py createsuperuser
