@@ -25,10 +25,14 @@ Un NOuveau LOgiciel de Gestion de patient
 ## Grand principes pour la doc
 - chaque élement fils de BaseAct n'appartient qu'à un seul uilisateur pour
   creation ou modification.
-_ on ne sauve rien sans passer par objects create ou update
-_ chaque creation se fait via les serializers
+- on ne sauve rien sans passer par objects create ou update
+- chaque creation se fait via les serializers
 
 ## mise en place
+```
 python setup.py pipenv
-./launch.py mm //mk migration + migrate
+
+./launch.py mm (will mk migration + migrate)
+
 ./launch.py createsuperuser
+```
