@@ -1,6 +1,8 @@
-from actes.models import Observation
-from actes.serializers import ObservationSerializer
 from rest_framework import viewsets
+
+from .models import Observation
+from .permissions import OnlyOwnerCanEdit
+from .serializers import ObservationSerializer
 
 
 # Create your views here.
@@ -12,3 +14,4 @@ class ObservationViewSet(viewsets.ModelViewSet):
     """
     queryset = Observation.objects.all()
     serializer_class = ObservationSerializer
+    permission_classes = (OnlyOwnerCanEdit, )

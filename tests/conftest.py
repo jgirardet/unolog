@@ -59,9 +59,8 @@ USers
 
 @pytest.fixture(autouse=True, scope='function')
 def testuser(db):
-    model = get_user_model()
-    u = mixer.blend(model)
-    return u
+
+    return mixer.blend(get_user_model())
 
 
 """
