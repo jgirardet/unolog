@@ -4,7 +4,6 @@ from .models import Observation
 from .permissions import OnlyOwnerCanEdit
 from .serializers import ObservationSerializer
 
-
 # Create your views here.
 
 
