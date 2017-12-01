@@ -17,7 +17,7 @@ class ActeSerializer(serializers.HyperlinkedModelSerializer):
     created = serializers.DateTimeField(read_only=True)
     modified = serializers.DateTimeField(read_only=True)
     owner = serializers.HyperlinkedRelatedField(
-        queryset=UnoUser.objects.all(), view_name='unouser-detail')
+        view_name='unouser-detail', read_only=True)
 
     class Meta:
         fields = (

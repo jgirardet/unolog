@@ -1,9 +1,10 @@
 import os
 import random
 
+from django.contrib.auth import get_user_model
+
 import pytest
 from actes.models import Observation
-from django.contrib.auth import get_user_model
 from mixer.backend.django import Mixer, mixer
 from patients.models import Patient
 
@@ -50,6 +51,11 @@ def patient_dict():
     p.__dict__.pop('_state')
     p.__dict__.pop('id')
     return p.__dict__.copy()
+
+
+@pytest.fixture(autouse=True, scope='function')
+def patient(db):
+    return mixer.blend(Patient)
 
 
 """
