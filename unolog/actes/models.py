@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+
 from patients.models import Patient
 
 
@@ -43,3 +44,33 @@ class Observation(BaseActe):
 
     def __str__(self):
         return self.motif
+
+
+"""
+Observation :
+    TA/pouls
+    conclusion
+ordonnance
+vaccin
+certif
+    titre
+    texte
+courries
+    dest
+    corps
+courriers reçus
+    spé
+    nom
+    contenu
+    pdf
+examens:
+    type
+    effecteur
+    pdf
+REGROUPER courrier et examens ?
+
+bio
+antécédants
+intolérances
+allergies
+"""

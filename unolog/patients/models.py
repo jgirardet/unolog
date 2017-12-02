@@ -81,3 +81,12 @@ class Patient(models.Model):
             setattr(self, i, capwords(getattr(self, i)))
 
         super(Patient, self).save(*args, **kwargs)
+
+
+"""
+champs à ajouter :
+date de décès
+décédé
+médecin traitant déclaré
+notes divers
+"""

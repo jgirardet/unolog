@@ -24,6 +24,9 @@ class UnoUser(AbstractUser):
 
 
 """
+RPPS
+ADELI
+"""
 
 https://github.com/codingforentrepreneurs/srvup-rest-framework/blob/master/src/accounts/models.py
 """
