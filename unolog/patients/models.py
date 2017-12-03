@@ -63,6 +63,7 @@ class Patient(models.Model):
     city = models.CharField(max_length=200, blank=True, default="")
     phonenumber = models.CharField(blank=True, max_length=20, default="")
     email = models.EmailField(blank=True, max_length=100, default="")
+    alive = models.BooleanField(blank=True, default=True)
 
     objects = PatientManager()
 
