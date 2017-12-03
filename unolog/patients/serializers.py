@@ -18,7 +18,7 @@ class PatientSerializer(serializers.HyperlinkedModelSerializer):
         model = Patient
         fields = ('pk', 'url', 'name', 'firstname', 'birthdate', 'sexe',
                   'street', 'postalcode', 'city', 'phonenumber', 'email',
-                  'observations')
+                  'observations', "alive")
 
     def validate_birthdate(self, value):
         """

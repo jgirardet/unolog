@@ -59,3 +59,9 @@ Base classe fo testing patient views
         [p.__dict__.pop(k) for k in ('id', '_state')]
         assert p.__dict__ == patient_dict
         assert resp.status_code == status.HTTP_201_CREATED
+
+    def test_alive_is_default_on_create(self, apiclient, patient_dict):
+        patient_dict['alive'] = False
+        r = apiclient.post(reverse('patient-list'), data=patient_dict)
+        p = Patient.objects.get(id=r.data['pk'])
+        assert p.alive == True
