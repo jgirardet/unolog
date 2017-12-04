@@ -1,4 +1,4 @@
-from actes.models import Observation
+from actes.models import Observation, Ordonnance
 from patients.models import Patient
 from rest_framework import serializers
 from unousers.models import UnoUser
@@ -38,3 +38,13 @@ class ObservationSerializer(ActeSerializer):
     class Meta(ActeSerializer.Meta):
         model = Observation
         fields = ActeSerializer.Meta.fields + ('motif', 'body')
+
+
+class OrdonnanceSerializer(ActeSerializer):
+    """
+    Observation serializer
+    """
+
+    class Meta(ActeSerializer.Meta):
+        model = Ordonnance
+        fields = ActeSerializer.Meta.fields + ('medic', )

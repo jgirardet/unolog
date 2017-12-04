@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-
+from medics.models import Medic
 from patients.models import Patient
 
 
@@ -46,10 +46,24 @@ class Observation(BaseActe):
         return self.motif
 
 
+class Ordonnance(BaseActe):
+    """
+    ORdonnance pour  les médicaments.
+
+    medic : un médicament
+    duree : durée de l'ordonnance.
+    oar : X time
+    """
+    medic = models.ManyToManyField(Medic, related_name="medics")
+
+
 """
+BAseActe:
+non modifiable if not today
 Observation :
     TA/pouls
     conclusion
+
 ordonnance
 vaccin
 certif

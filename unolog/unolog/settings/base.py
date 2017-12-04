@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'patients',
     'actes',
     'unousers',
+    'medics',
     'django_extensions',
 ]
 
