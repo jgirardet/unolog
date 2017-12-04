@@ -4,13 +4,12 @@ from string import capwords
 
 import pytest
 from mixer.backend.django import Mixer, mixer
+from patients.models import Patient
+from patients.serializers import PatientSerializer
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 from rest_framework.test import (APIClient, APIRequestFactory,
                                  force_authenticate)
-
-from patients.models import Patient
-from patients.serializers import PatientSerializer
 
 pytestmark = pytest.mark.django_db
 
@@ -38,7 +37,13 @@ class TestPatientSerializer:
         patient_dict['postalcode'] = "123456"
         s = PatientSerializer(data=patient_dict)
         with pytest.raises(serializers.ValidationError):
-            s.is_valid(raise_exception=True), " postale code can't be 6 chars"
+            s.is_valid(raise_exception=True), " postale code can't be 6 digit"
+
+    def test_postal_code_is_digit(self, patient_dict):
+        patient_dict['postalcode'] = "aaaaa"
+        s = PatientSerializer(data=patient_dict)
+        with pytest.raises(serializers.ValidationError):
+            s.is_valid(raise_exception=True), " postale code can't be chars"
 
     def test_phone_number_is_well_formated(self, patient_dict):
         a = patient_dict

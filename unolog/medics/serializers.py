@@ -10,10 +10,4 @@ class MedicSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Medic
-        fields = (
-            'cip',
-            'nom',
-            'posologie',
-            'duree',
-            'ald',
-        )
+        fields = ('cip', 'nom', 'posologie', 'duree', 'ald', 'ordonnance')

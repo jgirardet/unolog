@@ -1,14 +1,14 @@
 from actes.models import Observation, Ordonnance
+from medics.serializers import MedicSerializer
 from patients.models import Patient
 from rest_framework import serializers
-from unousers.models import UnoUser
 
 
 class ActeSerializer(serializers.HyperlinkedModelSerializer):
     """
     BaseActe serializer
     """
-    url = serializers.HyperlinkedIdentityField(view_name='observation-detail')
+
     pk = serializers.IntegerField(label='ID', read_only=True)
     patient = serializers.HyperlinkedRelatedField(
         queryset=Patient.objects.all(),
@@ -34,6 +34,7 @@ class ObservationSerializer(ActeSerializer):
     """
     Observation serializer
     """
+    url = serializers.HyperlinkedIdentityField(view_name='observation-detail')
 
     class Meta(ActeSerializer.Meta):
         model = Observation
@@ -45,6 +46,10 @@ class OrdonnanceSerializer(ActeSerializer):
     Observation serializer
     """
 
+    url = serializers.HyperlinkedIdentityField(view_name='ordonnance-detail')
+
+    medics = MedicSerializer(many=True, read_only=True)
+
     class Meta(ActeSerializer.Meta):
         model = Ordonnance
-        fields = ActeSerializer.Meta.fields + ('medic', )
+        fields = ActeSerializer.Meta.fields + ('medics', )

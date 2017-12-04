@@ -1,17 +1,7 @@
 from django.conf import settings
 from django.db import models
-from medics.models import Medic
+
 from patients.models import Patient
-
-
-class BaseActeManager(models.Manager):
-    """
-    custom managers for all base act
-    """
-
-    def create(self, **kwargs):
-        # recall base create
-        return super(BaseActeManager, self).create(**kwargs)
 
 
 class BaseActe(models.Model):
@@ -54,7 +44,12 @@ class Ordonnance(BaseActe):
     duree : durée de l'ordonnance.
     oar : X time
     """
-    medic = models.ManyToManyField(Medic, related_name="medics")
+
+    # medics = models.ManyToManyField(Medic, related_name="medics")
+
+    def __str__(self):
+        return self.owner.username + ' ' + self.created.strftime(
+            "%a, %d %b %Y %H")
 
 
 """
