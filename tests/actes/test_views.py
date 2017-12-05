@@ -5,16 +5,15 @@ from rest_framework.test import APIRequestFactory
 
 
 class TestObservationViewSet:
-
     def test_owner_readonly(self, apiclient, patient):
-        id  = apiclient.handler._force_user.id
+        id = apiclient.handler._force_user.id
         data = {
-        "patient": "http://localhost:8000/patients/1/",
-        "owner": "http://localhost:8000/users/"+str(id+1)+"/",
-        "motif": "cccccccccc",
-        "body": "cccccccc"
+            "patient": "http://localhost:8000/patients/1/",
+            "owner": "http://localhost:8000/users/" + str(id + 1) + "/",
+            "motif": "cccccccccc",
+            "body": "cccccccc"
         }
         r = apiclient.post(
             reverse('observation-list'), data=data, format='json')
 
-        assert  r.data['owner'][-2] == str(id), "owner should be logged user"
+        assert r.data['owner'][-2] == str(id), "owner should be logged user"

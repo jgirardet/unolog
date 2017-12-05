@@ -53,6 +53,12 @@ def patient_dict():
     return p.__dict__.copy()
 
 
+@pytest.fixture(autouse=True)
+def patient(patient_dict):
+    p = Patient.objects.create(**patient_dict)
+    return p
+
+
 @pytest.fixture(autouse=True, scope='function')
 def patient(db):
     return mixer.blend(Patient)
@@ -75,10 +81,9 @@ actes
 
 
 @pytest.fixture(autouse=True, scope='function')
-def observation_f(patient_dict, testuser, db):
+def observation(patient, testuser, db):
     """
     fixture for observation instance
     """
-    p = Patient.objects.create(**patient_dict)
-    o = mixer.blend(Observation, patient=p, owner=testuser)
+    o = mixer.blend(Observation, patient=patient, owner=testuser)
     return o
