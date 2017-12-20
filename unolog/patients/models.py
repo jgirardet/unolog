@@ -2,7 +2,7 @@ from string import capwords
 
 from django.db import models
 
-CAPWORDS_ATTRS = ('name', 'firstname', 'city')
+CAPWORDS_ATTRS = ('name', 'firstname')
 
 
 class PatientManager(models.Manager):

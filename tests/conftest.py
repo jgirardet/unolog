@@ -1,12 +1,12 @@
 import os
 import random
 
-from django.contrib.auth import get_user_model
-
 import pytest
 from actes.models import Observation
-from mixer.backend.django import Mixer, mixer
+from django.contrib.auth import get_user_model
 from patients.models import Patient
+
+from .factory import FacPatient
 
 # from pytest_django.fixtures import db
 
@@ -15,6 +15,16 @@ User = get_user_model()
 # assert 1 == sys.path
 """
 PAtients
+"""
+
+@pytest.fixture(scope='function', autouse=True)
+def fpatient(db):
+    """
+    DRF apiclient
+    """
+    return  [FacPatient.build() for i in range(10)]
+
+"""
 """
 
 
