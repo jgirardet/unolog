@@ -21,7 +21,6 @@ from actes.views import ObservationViewSet
 # from medics.views import MedicViewSet
 from ordonnances.views import OrdonnanceViewSet
 from patients.views import PatientViewSet
-from rest_framework.routers import DefaultRouter
 from unousers.views import UnoUserViewSet
 
 router = DefaultRouter()
