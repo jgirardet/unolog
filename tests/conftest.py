@@ -1,12 +1,12 @@
 import os
 import random
 
+import factory
 import pytest
 from actes.models import Observation
 from django.contrib.auth import get_user_model
 from patients.models import Patient
-
-from .factory import FacPatient
+from tests.patients.factory import FacPatient
 
 # from pytest_django.fixtures import db
 
@@ -22,7 +22,7 @@ def fpatient(db):
     """
     DRF apiclient
     """
-    return  [FacPatient.build() for i in range(10)]
+    return  FacPatient
 
 """
 """
@@ -48,19 +48,8 @@ def patient_dict():
 
     mixer doesn't populate blank fields by dfault
     """
-    m = Mixer(commit=False)
-    p = m.blend(
-        Patient,
-        street=mixer.FAKE,
-        city=mixer.FAKE,
-        postalcode=str(random.randrange(1, 99999)),
-        phonenumber='0' + str(random.randrange(100000000, 899999999)),
-        email=mixer.FAKE,
-    )
 
-    p.__dict__.pop('_state')
-    p.__dict__.pop('id')
-    return p.__dict__.copy()
+    return factory.build(dict, FACTORY_CLASS=FacPatient)
 
 
 @pytest.fixture(autouse=True)
@@ -70,7 +59,7 @@ def patient(patient_dict):
 
 
 @pytest.fixture(autouse=True, scope='function')
-def patient(db):
+def patientd(db):
     return mixer.blend(Patient)
 
 
