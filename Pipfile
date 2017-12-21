@@ -10,10 +10,8 @@ djangorestframework = "*"
 django = "*"
 
 
-
 [dev-packages]
 
-mixer = "*"
 django-extensions = "*"
 ipdb = "*"
 ipython = "*"
@@ -22,7 +20,7 @@ pytest = "*"
 pytest-cov = "*"
 pytest-django = "*"
 django-cors-headers = "*"
-python-language-server = "*"
 pytest-pythonpath = "*"
 factory-boy = "*"
-faker = "*"
+"flake8" = "*"
+yapf = "*"

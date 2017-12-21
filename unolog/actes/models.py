@@ -1,4 +1,4 @@
-from django.conf import settings
+Bbfrom django.conf import settings
 from django.db import models
 
 from patients.models import Patient

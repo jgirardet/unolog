@@ -1,6 +1,5 @@
 import pytest
 from actes.models import Observation
-from mixer.backend.django import Mixer
 
 pytestmark = pytest.mark.django_db
 
