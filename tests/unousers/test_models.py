@@ -1,6 +1,6 @@
-import pytest
 from django.contrib.auth import get_user_model
-from mixer.backend.django import Mixer, mixer
+
+import pytest
 
 #pytestmark = pytest.mark.django_db
 

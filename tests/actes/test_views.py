@@ -1,11 +1,10 @@
 import pytest
-from mixer.backend.django import mixer
 from rest_framework.reverse import reverse, reverse_lazy
 from rest_framework.test import APIRequestFactory
 
 
 class TestObservationViewSet:
-    def test_owner_readonly(self, apiclient, patient):
+    def test_owner_readonly(self, apiclient):
         id = apiclient.handler._force_user.id
         data = {
             "patient": "http://localhost:8000/patients/1/",
