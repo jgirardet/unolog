@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
-from actes.views import ObservationViewSet, OrdonnanceViewSet
 from django.conf.urls import include, url
 from django.contrib import admin
-from medics.views import MedicViewSet
+
+from actes.views import ObservationViewSet
+# from medics.views import MedicViewSet
+from ordonnances.views import OrdonnanceViewSet
 from patients.views import PatientViewSet
 from rest_framework.routers import DefaultRouter
 from unousers.views import UnoUserViewSet
@@ -25,9 +27,9 @@ from unousers.views import UnoUserViewSet
 router = DefaultRouter()
 router.register('patients', PatientViewSet)
 router.register('observations', ObservationViewSet)
-router.register('ordonnances', OrdonnanceViewSet)
+# router.register('ordonnances', OrdonnanceViewSet)
 router.register('users', UnoUserViewSet)
-router.register('medics', MedicViewSet)
+# router.register('medics', MedicViewSet)
 
 urlpatterns = [
     url(r'^api-auth/',

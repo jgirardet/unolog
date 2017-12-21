@@ -1,8 +1,8 @@
 from rest_framework import mixins, viewsets
 
-from .models import Observation, Ordonnance
+from .models import Observation
 from .permissions import OnlyOwnerCanEdit
-from .serializers import ObservationSerializer, OrdonnanceSerializer
+from .serializers import ObservationSerializer
 
 
 class ActeViewSet(viewsets.ModelViewSet):
@@ -23,11 +23,3 @@ class ObservationViewSet(ActeViewSet):
     """
     queryset = Observation.objects.all()
     serializer_class = ObservationSerializer
-
-
-class OrdonnanceViewSet(ActeViewSet):
-    """
-    base viewset for Ordonances
-    """
-    queryset = Ordonnance.objects.all()
-    serializer_class = OrdonnanceSerializer

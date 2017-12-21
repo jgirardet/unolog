@@ -1,5 +1,4 @@
-from actes.models import Observation, Ordonnance
-from medics.serializers import MedicSerializer
+from actes.models import Observation
 from patients.models import Patient
 from rest_framework import serializers
 
@@ -39,17 +38,3 @@ class ObservationSerializer(ActeSerializer):
     class Meta(ActeSerializer.Meta):
         model = Observation
         fields = ActeSerializer.Meta.fields + ('motif', 'body')
-
-
-class OrdonnanceSerializer(ActeSerializer):
-    """
-    Observation serializer
-    """
-
-    url = serializers.HyperlinkedIdentityField(view_name='ordonnance-detail')
-
-    medics = MedicSerializer(many=True, read_only=True)
-
-    class Meta(ActeSerializer.Meta):
-        model = Ordonnance
-        fields = ActeSerializer.Meta.fields + ('medics', )

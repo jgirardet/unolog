@@ -36,22 +36,6 @@ class Observation(BaseActe):
         return self.motif
 
 
-class Ordonnance(BaseActe):
-    """
-    ORdonnance pour  les médicaments.
-
-    medic : un médicament
-    duree : durée de l'ordonnance.
-    oar : X time
-    """
-
-    # medics = models.ManyToManyField(Medic, related_name="medics")
-
-    def __str__(self):
-        return self.owner.username + ' ' + self.created.strftime(
-            "%a, %d %b %Y %H")
-
-
 """
 BAseActe:
 non modifiable if not today
