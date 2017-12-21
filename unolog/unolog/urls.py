@@ -21,12 +21,13 @@ from actes.views import ObservationViewSet
 # from medics.views import MedicViewSet
 from ordonnances.views import OrdonnanceViewSet
 from patients.views import PatientViewSet
+from rest_framework.routers import DefaultRouter
 from unousers.views import UnoUserViewSet
 
 router = DefaultRouter()
 router.register('patients', PatientViewSet)
 router.register('observations', ObservationViewSet)
-# router.register('ordonnances', OrdonnanceViewSet)
+router.register('ordonnances', OrdonnanceViewSet)
 router.register('users', UnoUserViewSet)
 # router.register('medics', MedicViewSet)
 
