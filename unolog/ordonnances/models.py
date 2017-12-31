@@ -27,11 +27,11 @@ class LigneOrdonnance(models.Model):
     """
     position = models.PositiveIntegerField()
     ordonnance = models.ForeignKey(
-        Ordonnance, on_delete=models.CASCADE, related_name="%(class)ss")
+        Ordonnance, on_delete=models.CASCADE, related_name="lignes")
     ald = models.BooleanField(default=False)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey()
+    contenu = GenericForeignKey()
 
     def __str__(self):
         return 'ordo : ' + self.ordonnance.__str__() + ' position : ' + str(
@@ -56,7 +56,7 @@ class Conseil(models.Model):
     """
     Base model pour des conseils
     """
-    contenu = models.TextField()
+    texte = models.TextField()
     ligne = GenericRelation(LigneOrdonnance, related_query_name='conseil')
 
     def __str__(self):
