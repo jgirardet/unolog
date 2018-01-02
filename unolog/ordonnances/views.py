@@ -1,7 +1,7 @@
 from actes.views import ActeViewSet
 from rest_framework import viewsets
 
-from .models import Conseil, LigneOrdonnance, Medicament, Ordonnance
+from .models import Conseil, Medicament, Ordonnance
 from .serializers import (ConseilSerializer, LigneOrdonnanceSerializer,
                           MedicamentSerializer, OrdonnanceSerializer)
 
@@ -14,12 +14,14 @@ class OrdonnanceViewSet(ActeViewSet):
     serializer_class = OrdonnanceSerializer
 
 
-class LigneOrdonnanceViewset(viewsets.ModelViewSet):
-    """
-    view set for ligne ordonnance
-    """
-    queryset = LigneOrdonnance.objects.all()
-    serializer_class = LigneOrdonnanceSerializer
+#
+# class LigneOrdonnanceViewset(viewsets.ModelViewSet):
+#     """
+#     view set for ligne ordonnance
+#     """
+#     queryset = LigneOrdonnance.objects.all()
+#     serializer_class = LigneOrdonnanceSerializer
+#
 
 
 class MedicamentViewset(viewsets.ModelViewSet):

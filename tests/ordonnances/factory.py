@@ -11,6 +11,8 @@ class FacOrdonnance(FacBaseActe):
     class Meta:
         model = 'ordonnances.Ordonnance'
 
+    position = fk('text', max_nb_chars=50, locale="fr_FR")
+
 
 class FacMedicament(factory.django.DjangoModelFactory):
     class Meta:

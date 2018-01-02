@@ -1,6 +1,3 @@
-from django.contrib.contenttypes.fields import (GenericForeignKey,
-                                                GenericRelation)
-from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 from actes.models import BaseActe
@@ -16,6 +13,7 @@ class Ordonnance(BaseActe):
     """
 
     # medics = models.ManyToManyField(Medic, related_name="medics")
+    position = models.CharField(max_length=300)
 
     def __str__(self):
         return str(self.id)
@@ -25,20 +23,20 @@ class LigneOrdonnance(models.Model):
     """
     Base Class for each item on Ordonnance
     """
-    position = models.PositiveIntegerField()
+
     ordonnance = models.ForeignKey(
-        Ordonnance, on_delete=models.CASCADE, related_name="lignes")
+        Ordonnance, related_name="%(class)ss", on_delete=models.CASCADE)
     ald = models.BooleanField(default=False)
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    contenu = GenericForeignKey()
 
-    def __str__(self):
-        return 'ordo : ' + self.ordonnance.__str__() + ' position : ' + str(
-            self.position) + ' : ' + self.contenu.__str__()
+    class Meta:
+        abstract = True
+
+    @property
+    def nom_id(self):
+        return self.__class__.__name__.lower() + str(self.id)
 
 
-class Medicament(models.Model):
+class Medicament(LigneOrdonnance):
     """
     Medicament model
     """
@@ -46,18 +44,16 @@ class Medicament(models.Model):
     nom = models.CharField(max_length=200)
     posologie = models.CharField(max_length=200)
     duree = models.PositiveIntegerField()  # en jours
-    ligne = GenericRelation(LigneOrdonnance, related_query_name='medicament')
 
     def __str__(self):
         return self.nom
 
 
-class Conseil(models.Model):
+class Conseil(LigneOrdonnance):
     """
     Base model pour des conseils
     """
     texte = models.TextField()
-    ligne = GenericRelation(LigneOrdonnance, related_query_name='conseil')
 
     def __str__(self):
         return self.contenu

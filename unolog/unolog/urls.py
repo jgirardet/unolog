@@ -19,8 +19,8 @@ from django.contrib import admin
 
 from actes.views import ObservationViewSet
 # from medics.views import MedicViewSet
-from ordonnances.views import (ConseilViewset, LigneOrdonnanceViewset,
-                               MedicamentViewset, OrdonnanceViewSet)
+from ordonnances.views import (ConseilViewset, MedicamentViewset,
+                               OrdonnanceViewSet)
 from patients.views import PatientViewSet
 from rest_framework.routers import DefaultRouter
 from unousers.views import UnoUserViewSet
@@ -30,7 +30,6 @@ router.register('patients', PatientViewSet)
 router.register('observations', ObservationViewSet)
 router.register('ordonnances', OrdonnanceViewSet)
 router.register('users', UnoUserViewSet)
-router.register('ligneordonnances', LigneOrdonnanceViewset)
 router.register('medicaments', MedicamentViewset)
 router.register('conseils', ConseilViewset)
 # router.register('medics', MedicViewSet)
