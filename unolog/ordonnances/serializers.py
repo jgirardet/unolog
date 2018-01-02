@@ -32,7 +32,7 @@ class ConseilSerializer(serializers.ModelSerializer):
 
 class TypeRelatedField(serializers.RelatedField):
     # def get_queryset(self):
-    #     return value.objects.all()
+    #     return self.content_type.model_class().objects.all()
 
     def to_representation(self, value):
         if isinstance(value, Medicament):
@@ -73,7 +73,7 @@ class LigneOrdonnanceSerializer(serializers.ModelSerializer):
     """
 
     content_type = serializers.CharField(source='content_type.name')
-    contenu = TypeRelatedField(queryset=content_type.model.objects.all())
+    contenu = TypeRelatedField(queryset="")
 
     class Meta:
         model = LigneOrdonnance
@@ -86,7 +86,7 @@ class OrdonnanceSerializer(ActeSerializer):
     """
 
     url = serializers.HyperlinkedIdentityField(view_name='ordonnance-detail')
-    lignes = LigneOrdonnanceSerializer()
+    lignes = LigneOrdonnanceSerializer(many=True)
 
     class Meta(ActeSerializer.Meta):
         model = Ordonnance

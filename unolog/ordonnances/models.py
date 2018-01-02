@@ -35,7 +35,7 @@ class LigneOrdonnance(models.Model):
 
     def __str__(self):
         return 'ordo : ' + self.ordonnance.__str__() + ' position : ' + str(
-            self.position) + ' : ' + self.content_object.__str__()
+            self.position) + ' : ' + self.contenu.__str__()
 
 
 class Medicament(models.Model):

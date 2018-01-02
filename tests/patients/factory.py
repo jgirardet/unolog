@@ -4,10 +4,7 @@ import sys
 from django.utils import timezone
 
 import factory
-from faker import Faker
 from patients.models import Patient
-
-sys.path.append('../unolog')
 
 fk = factory.Faker
 tz = timezone.tzinfo
