@@ -31,8 +31,8 @@ class ConseilSerializer(serializers.ModelSerializer):
 
 
 class TypeRelatedField(serializers.RelatedField):
-    # def get_queryset(self):
-    #     return self.content_type.model_class().objects.all()
+    def get_queryset(self):
+        return self.queryset
 
     def to_representation(self, value):
         if isinstance(value, Medicament):
@@ -49,12 +49,11 @@ class TypeRelatedField(serializers.RelatedField):
     def to_internal_value(self, data):
         # you need to pass some identity to figure out which serializer to use
         # supose you'll add 'meeting_type' key to your json
-        letype = data.pop('content_type')
-        print(letype)
+        content_type = data.pop('content_type')
 
-        if meeting_type == 'medicament':
+        if content_type == 'medicament':
             serializer = MedicamentSerializer(data)
-        elif meeting_type == 'conseil':
+        elif content_type == 'conseil':
             serializer = ConseilSerializer(data)
         else:
             raise serializers.ValidationError('no ligne type provided')
@@ -73,11 +72,14 @@ class LigneOrdonnanceSerializer(serializers.ModelSerializer):
     """
 
     content_type = serializers.CharField(source='content_type.name')
-    contenu = TypeRelatedField(queryset="")
+    contenu = TypeRelatedField()
 
     class Meta:
         model = LigneOrdonnance
         fields = ('pk', 'position', 'ald', 'contenu', 'content_type')
+
+    def create(self, validated_data):
+        contenu = validated_data.pop['contenu']
 
 
 class OrdonnanceSerializer(ActeSerializer):
