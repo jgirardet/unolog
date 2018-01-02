@@ -13,12 +13,12 @@ from unousers.models import UnoUser
 
 
 def populate():
-    FacPatient.create_batch(20)
+    FacPatient.create_batch(10)
     FacUnoUser.create_batch(3)
     for i in range(60):
         FacObservation.create(
             owner=ch(UnoUser.objects.all()), patient=ch(Patient.objects.all()))
-    for i in range(60):
+    for i in range(20):
         FacOrdonnance.create(
             owner=ch(UnoUser.objects.all()), patient=ch(Patient.objects.all()))
     for i in range(60):
