@@ -1,8 +1,8 @@
-from django.contrib.contenttypes.models import ContentType
-from tests.factories import FacBaseActe
-
 import factory
-from ordonnances.models import Conseil, LigneOrdonnance, Medicament, Ordonnance
+from django.contrib.contenttypes.models import ContentType
+# from ordonnances.models import Conseil, LigneOrdonnance, Medicament, Ordonnance
+from ordonnances.models import LigneOrdonnance, Medicament, Ordonnance
+from tests.factories import FacBaseActe
 
 fk = factory.Faker
 

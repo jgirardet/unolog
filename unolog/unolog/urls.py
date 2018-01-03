@@ -14,10 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
+from actes.views import ObservationViewSet
 from django.conf.urls import include, url
 from django.contrib import admin
-
-from actes.views import ObservationViewSet
 # from medics.views import MedicViewSet
 from ordonnances.views import (ConseilViewset, MedicamentViewset,
                                OrdonnanceViewSet)
