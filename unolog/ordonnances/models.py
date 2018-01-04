@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from actes.models import BaseActe
 
@@ -15,30 +16,29 @@ class Ordonnance(BaseActe):
     # medics = models.ManyToManyField(Medic, related_name="medics")
     ordre = models.CharField(max_length=300, blank=True)
 
-    def get_lines(self):
+    def get_lignes(self):
         #pour avoir chaque type différent de ligne
-        m = self.medicaments.all()
-        n = self.conseils.all()
-        lignes = m + n
+        pass
 
     def __str__(self):
         return str(self.id)
 
 
 class LigneManager(models.Manager):
-    def new_line(self, **kwargs):
+    def new_ligne(self, **kwargs):
         #check allowed kwargs
         fields = set([i.name for i in self.model._meta.get_fields()])
         assert not set(kwargs) - fields, "kwargs should be in model fields"
 
         ligne = self.model(**kwargs)
         ligne.save()
-        ordo = Ordonnance.objects.get(id=ligne.ordonnance_id)
-        ordo.ordre = ";".join((ordo.ordre, ligne.nom_id))
-        ordo.save()
-        return ordo
+        print(ligne.ordonnance_id)
+        ligne.ordonnance.ordre = ";".join((ligne.ordonnance.ordre,
+                                           ligne.nom_id))
+        ligne.save()
+        return ligne
 
-    def update_line(self, **kwargs):
+    def update_ligne(self, **kwargs):
         pass
         #
         # else:
@@ -72,6 +72,10 @@ class LigneOrdonnance(models.Model):
     def nom_id(self):
         return self.__class__.__name__ + "-" + str(self.id)
 
+    def save(self, *args, **kwargs):
+        self.ordonnance.save()
+        super().save()
+
 
 class Medicament(LigneOrdonnance):
     """
@@ -92,5 +96,5 @@ class Conseil(LigneOrdonnance):
     """
     texte = models.TextField()
 
-    # def __str__(self):
-    #     return self.texte
+    def __str__(self):
+        return self.texte[:20]

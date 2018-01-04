@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 from patients.models import Patient
 
@@ -12,7 +13,7 @@ class BaseActe(models.Model):
     patient = models.ForeignKey(
         Patient, related_name="%(class)ss", on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    modified = models.DateTimeField(default=timezone.now)
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name="%(class)ss",
@@ -20,6 +21,10 @@ class BaseActe(models.Model):
 
     class Meta:
         abstract = True
+
+    def save(self, *args, **kwargs):
+        self.modified = timezone.now()
+        super().save()
 
 
 class Observation(BaseActe):

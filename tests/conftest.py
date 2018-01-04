@@ -1,7 +1,5 @@
 from django.contrib.auth import get_user_model
-from tests.actes.factory import FacObservation
-from tests.patients.factory import FacPatient
-from tests.unousers.factory import FacUnoUser
+from tests.factories import *
 
 import factory
 import pytest
@@ -68,3 +66,11 @@ def observation(db):
     fixture for observation instance
     """
     return FacObservation()
+
+
+#"""
+#Ordonnances
+#""""
+@pytest.fixture(autouse=True)
+def ordonnance(db):
+    return FacOrdonnance()
