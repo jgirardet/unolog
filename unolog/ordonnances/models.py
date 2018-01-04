@@ -1,5 +1,6 @@
-from actes.models import BaseActe
 from django.db import models
+
+from actes.models import BaseActe
 
 
 class Ordonnance(BaseActe):
@@ -24,6 +25,34 @@ class Ordonnance(BaseActe):
         return str(self.id)
 
 
+class LigneManager(models.Manager):
+    def new_line(self, **kwargs):
+        #check allowed kwargs
+        fields = set([i.name for i in self.model._meta.get_fields()])
+        assert not set(kwargs) - fields, "kwargs should be in model fields"
+
+        ligne = self.model(**kwargs)
+        ligne.save()
+        ordo = Ordonnance.objects.get(id=ligne.ordonnance_id)
+        ordo.ordre = ";".join((ordo.ordre, ligne.nom_id))
+        ordo.save()
+        return ordo
+
+    def update_line(self, **kwargs):
+        pass
+        #
+        # else:
+        #     #now about update
+        #     ordre = self.ordonnance.ordre.split(";")
+        #     try:
+        #         ordre.remove(self.nom_id)
+        #     except:
+        #         pass
+        #     ordre.insert(self.position, self.nom_id)
+        #     self.ordonnance.ordre = ";".join(ordre)
+        #     super().save(*args, **kwargs)
+
+
 class LigneOrdonnance(models.Model):
     """
     Base Class for each item on Ordonnance
@@ -37,31 +66,11 @@ class LigneOrdonnance(models.Model):
     class Meta:
         abstract = True
 
+    objects = LigneManager()
+
     @property
     def nom_id(self):
-        return self.__class__.__name__+"-" + str(self.id)
-
-    def save(self, *args, **kwargs):
-        if not self.id: #new thing alwayas dded first
-            super().save(*args, **kwargs)
-            ordo = Ordonnance.objects.get(id=self.ordonnance.id)
-            ordo.ordre = ordo.ordre + ";" + self.nom_id
-            ordo.save()
-
-        else:
-            #now about update
-            ordre = self.ordonnance.ordre.split(";")
-            try:
-                ordre.remove(self.nom_id)
-            except:
-                pass
-            ordre.insert(self.position, self.nom_id)
-            self.ordonnance.ordre = ";".join(ordre)
-            super().save(*args, **kwargs)
-
-
-
-
+        return self.__class__.__name__ + "-" + str(self.id)
 
 
 class Medicament(LigneOrdonnance):
