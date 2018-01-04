@@ -1,3 +1,7 @@
+from itertools import chain
+from operator import attrgetter
+
+from django.apps import apps
 from django.db import models
 from django.utils import timezone
 
@@ -11,14 +15,42 @@ class Ordonnance(BaseActe):
     medic : un médicament
     duree : durée de l'ordonnance.
     oar : X time
+
+    Chaque subClass de ligne/ordonnance doit apparaitre dans type_actif
     """
 
-    # medics = models.ManyToManyField(Medic, related_name="medics")
     ordre = models.CharField(max_length=300, blank=True)
+    """
+    TYPE_ACTIFS doit être utilisé à chaque fois qu'un opération
+    doit retourner un mix des différents modele d'une ordonnances
+    """
+
+    TYPE_ACTIFS = (
+        "Medicament",
+        "Conseil",
+    )
+
+    @property
+    def _get_actifs(self):
+        types = []
+        for name in self.TYPE_ACTIFS:
+            yield apps.get_model('ordonnances', name)
 
     def get_lignes(self):
         #pour avoir chaque type différent de ligne
-        pass
+        lignes = []
+        for mod in self.TYPE_ACTIFS:
+            m = getattr(self, mod.lower() + 's')
+            lignes.append(m.all())
+        return sorted(chain(*lignes), key=attrgetter('position'))
+
+    @property
+    def nb_lignes(self):
+        #pour avoir chaque type différent de ligne
+
+        m = self.medicaments.count()
+        c = self.conseils.count()
+        return m + c
 
     def __str__(self):
         return str(self.id)
@@ -31,8 +63,9 @@ class LigneManager(models.Manager):
         assert not set(kwargs) - fields, "kwargs should be in model fields"
 
         ligne = self.model(**kwargs)
+        # nb = ligne.ordonnance.
+        print(ligne.ordonnance.created)
         ligne.save()
-        print(ligne.ordonnance_id)
         ligne.ordonnance.ordre = ";".join((ligne.ordonnance.ordre,
                                            ligne.nom_id))
         ligne.save()
