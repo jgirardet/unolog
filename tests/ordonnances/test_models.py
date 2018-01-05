@@ -8,12 +8,35 @@ from ordonnances.models import Conseil, LigneOrdonnance, Medicament, Ordonnance
 
 pytestmark = pytest.mark.django_db
 
-# class TestOrdonnance:
-#     def test_get_lignes(self, ordonnance):
-#         o = FacOrdonnance()
-#         l = random.choices((FacMedicament, FacConseil), k=10)
-#         e = [i(ordonnance=o) for i in l]
-#         assert set(e) == set(o.get_lignes())
+
+class TestOrdonnance:
+    def test_get_lignes(self):
+        o = FacOrdonnance()
+        l = random.choices((FacMedicament, FacConseil), k=10)
+        e = [i(ordonnance=o) for i in l]
+        assert set(e) == set(o.get_lignes())
+
+    def test_get_lignes_position(self):
+        o = FacOrdonnance()
+        l = random.choices((FacMedicament, FacConseil), k=5)
+        e = [i(ordonnance=o) for i in l]
+        random.shuffle(e)
+
+        ids = []
+        for x, y in zip(e, tuple(range(5))):
+            x.position = y
+            x.save()
+            ids.append(x.id)
+
+        assert ids == [i.id for i in o.get_lignes()]
+
+    # def test_update_ordre(self):
+    #     o = FacOrdonnance()
+    #     l = random.choices((FacMedicament, FacConseil), k=5)
+    #     e = [i(ordonnance=o) for i in l]
+    #     instance = e[1]
+    #     o.update_ordre(instance, 4)
+    #     assert
 
 
 class TestLigneManager:

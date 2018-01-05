@@ -52,6 +52,9 @@ class Ordonnance(BaseActe):
         c = self.conseils.count()
         return m + c
 
+    # def update_ordre(self, instance,  new_pos ):
+    #     pass
+
     def __str__(self):
         return str(self.id)
 
