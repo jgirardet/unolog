@@ -24,10 +24,11 @@ class TestLigneManager:
         with pytest.raises(AssertionError):
             Medicament.objects.new_ligne(**a)
 
-    def test_nexline_saves_ordre(self):
-        o = FacOrdonnance(ordre=";rien2")
+    def test_newline_saves_position(self):
+        o = FacOrdonnance()
+        [FacMedicament(ordonnance=o) for i in range(5)]
         a = FacMedicament(ordonnance=o)
-        assert a.ordonnance.ordre == ";rien2" + ";" + a.nom_id
+        assert a.position == 5
 
 
 class TestLigneOrdonnance:

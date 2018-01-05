@@ -63,11 +63,7 @@ class LigneManager(models.Manager):
         assert not set(kwargs) - fields, "kwargs should be in model fields"
 
         ligne = self.model(**kwargs)
-        # nb = ligne.ordonnance.
-        print(ligne.ordonnance.created)
-        ligne.save()
-        ligne.ordonnance.ordre = ";".join((ligne.ordonnance.ordre,
-                                           ligne.nom_id))
+        ligne.position = ligne.ordonnance.nb_lignes
         ligne.save()
         return ligne
 
