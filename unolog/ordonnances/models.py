@@ -38,6 +38,8 @@ class Ordonnance(BaseActe):
 
     def get_lignes(self):
         #pour avoir chaque type différent de ligne
+        #écupère tous les élément de chaque types
+        #et les stock triés selon position
         lignes = []
         for mod in self.TYPE_ACTIFS:
             m = getattr(self, mod.lower() + 's')
