@@ -7,6 +7,8 @@ from django.utils import timezone
 
 from actes.models import BaseActe
 
+from .utils import create_ordre
+
 
 class Ordonnance(BaseActe):
     """
@@ -36,15 +38,51 @@ class Ordonnance(BaseActe):
         for name in self.TYPE_ACTIFS:
             yield apps.get_model('ordonnances', name)
 
-    def get_lignes(self):
-        #pour avoir chaque type différent de ligne
-        #écupère tous les élément de chaque types
-        #et les stock triés selon position
-        lignes = []
+    def _get_querysets(self):
+        #return dict of querysets for different ligne type
+        querysets = {}
         for mod in self.TYPE_ACTIFS:
-            m = getattr(self, mod.lower() + 's')
-            lignes.append(m.all())
-        return sorted(chain(*lignes), key=attrgetter('position'))
+            lower = mod.lower() + 's'
+            m = getattr(self, lower)
+            querysets[mod] = m.all()
+        return querysets
+
+    def _get_new_ordre(self, querysets):
+        """
+        fonction de repli si la requête échoue (mauvais.ordre, .ordre et
+        instance non concordant)
+        """
+        nouvelle_list = tuple(chain.from_iterable(querysets.values()))
+        self.ordre = ';'.join([i.nom_id for i in nouvelle_list])
+        self.save()
+        return nouvelle_list
+
+    def get_lignes(self):
+        """
+        retourne un liste de ligne dans l'ordre  à partir des _get_querysets
+        et selon ordre
+
+        """
+        querysets = self._get_querysets()
+        ordre = self.ordre.split(';')
+        """
+        #si l'ordre ne correspond pas aux lignes en ddb, on renvoi
+        sans ordre
+        """
+        if sum(map(len, querysets.values())) != len(ordre):
+            print("len pas ok")
+            return self._get_new_ordre(querysets)
+
+        #on suit l'ordre de o
+        ordered = []
+        try:
+            for i in ordre:
+                u = i.split('-')
+                ordered.append(querysets[u[0]].get(id=u[1]))
+        except:
+            print("erreur pour l'ordered")
+            return self._get_new_ordre(querysets)
+        return ordered
 
     @property
     def nb_lignes(self):
@@ -68,8 +106,10 @@ class LigneManager(models.Manager):
         assert not set(kwargs) - fields, "kwargs should be in model fields"
 
         ligne = self.model(**kwargs)
-        ligne.position = ligne.ordonnance.nb_lignes
+
         ligne.save()
+
+        create_ordre(ligne)
         return ligne
 
     def update_ligne(self, **kwargs):
