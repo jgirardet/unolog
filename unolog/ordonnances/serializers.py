@@ -20,10 +20,11 @@ class LigneOrdonnanceSerializer(serializers.HyperlinkedModelSerializer):
 
         return super().update(instance, validated_data)
 
-
-"""
-Il faut checker que ordonnance owner == current user pour modif ordoo
-"""
+    def validate_ordonnance(self, data):
+        if self.instance:
+            ordo = self.instance.ordonnance.id
+            return data['ordonnance']
+            raise serializers.ValidationError("finish must occur after start")
 
 
 class MedicamentSerializer(LigneOrdonnanceSerializer):
