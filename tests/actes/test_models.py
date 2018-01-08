@@ -1,5 +1,6 @@
 import pytest
 from actes.models import Observation
+from tests.factories import *
 
 pytestmark = pytest.mark.django_db
 
@@ -13,8 +14,8 @@ class TestObservation:
         # test __str__
         assert observation.__str__() == observation.motif
 
-    def test_save(self, observation):
-        assert observation.created == observation.modified
+    def test_save(self):
+        observation = FacObservation()
         import time
         time.sleep(1 / 100)
         observation.save()

@@ -1,8 +1,7 @@
-from tests.factories import FacBaseActe
-
 import factory
 # from ordonnances.models import Conseil, LigneOrdonnance, Medicament, Ordonnance
 from ordonnances.models import Conseil, LigneOrdonnance, Medicament, Ordonnance
+from tests.factories import FacBaseActe
 
 fk = factory.Faker
 
@@ -18,7 +17,6 @@ class FacOrdonnance(FacBaseActe):
 
 class FacLigneOrdonnance(factory.DjangoModelFactory):
 
-    position = factory.Sequence(lambda n: n)
     ordonnance = factory.SubFactory(FacOrdonnance)
     ald = fk('boolean')
 

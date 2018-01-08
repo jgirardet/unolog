@@ -1,13 +1,10 @@
 from itertools import chain
 from operator import attrgetter
 
+from actes.models import BaseActe
 from django.apps import apps
 from django.db import models
 from django.utils import timezone
-
-from actes.models import BaseActe
-
-from .utils import create_ordre
 
 
 class Ordonnance(BaseActe):
@@ -109,7 +106,7 @@ class LigneManager(models.Manager):
 
         ligne.save()
 
-        create_ordre(ligne)
+        ligne._update_ordre()
         return ligne
 
     def update_ligne(self, **kwargs):
@@ -135,12 +132,17 @@ class LigneOrdonnance(models.Model):
     ordonnance = models.ForeignKey(
         Ordonnance, related_name="%(class)ss", on_delete=models.CASCADE)
     ald = models.BooleanField(default=False)
-    position = models.IntegerField()
 
     class Meta:
         abstract = True
 
     objects = LigneManager()
+
+    def _update_ordre(self):
+        ordo = self.ordonnance
+        ordo.ordre = ";".join((ordo.ordre, self.nom_id))
+        ordo.ordre = ordo.ordre.strip(';')
+        ordo.save()
 
     @property
     def nom_id(self):
@@ -149,6 +151,16 @@ class LigneOrdonnance(models.Model):
     def save(self, *args, **kwargs):
         self.ordonnance.save()
         super().save()
+
+    def delete(self, *args, **kwargs):
+        #update ordonnace.ordre
+        ordo = self.ordonnance
+        ids = ordo.ordre.split(';')
+        ids.remove(self.nom_id)
+        ordo.ordre = ';'.join(ids)
+        ordo.save()
+
+        super().save(*args, **kwargs)
 
 
 class Medicament(LigneOrdonnance):

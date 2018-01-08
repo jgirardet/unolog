@@ -9,7 +9,7 @@ class LigneOrdonnanceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LigneOrdonnance
-        fields = ('ordonnance', 'pk', 'position')
+        fields = ('ordonnance', 'pk')
 
     def create(self, validated_data):
         return self.Meta.model.objects.new_ligne(**validated_data)
