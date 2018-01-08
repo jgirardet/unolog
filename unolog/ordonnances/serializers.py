@@ -4,15 +4,26 @@ from rest_framework import serializers
 from .models import Conseil, LigneOrdonnance, Medicament, Ordonnance
 
 
-class LigneOrdonnanceSerializer(serializers.ModelSerializer):
+class LigneOrdonnanceSerializer(serializers.HyperlinkedModelSerializer):
     """docstring for LigneOrdonnaceSerializer."""
 
     class Meta:
         model = LigneOrdonnance
-        fields = ('ordonnance', 'pk')
+        fields = ('url', 'ordonnance')
 
     def create(self, validated_data):
         return self.Meta.model.objects.new_ligne(**validated_data)
+
+    def update(self, instance, validated_data):
+        #ordonnance est read-only
+        validated_data.pop('ordonnance')
+
+        return super().update(instance, validated_data)
+
+
+"""
+Il faut checker que ordonnance owner == current user pour modif ordoo
+"""
 
 
 class MedicamentSerializer(LigneOrdonnanceSerializer):
@@ -40,6 +51,13 @@ class ConseilSerializer(LigneOrdonnanceSerializer):
         fields = LigneOrdonnanceSerializer.Meta.fields + ('texte', )
 
 
+class LigneRepresentationField(serializers.RelatedField):
+    def to_representation(self, value):
+        if isinstance(value, Medicament):
+            ser = MedicamentSerializer(value)
+            return ser.data
+
+
 class OrdonnanceSerializer(ActeSerializer):
     """
     Observation serializer
@@ -48,9 +66,22 @@ class OrdonnanceSerializer(ActeSerializer):
     #url specifique to subclass : can't make it auto
     url = serializers.HyperlinkedIdentityField(view_name='ordonnance-detail')
 
-    medicaments = MedicamentSerializer(many=True, read_only=True)
-    conseils = ConseilSerializer(many=True, read_only=True)
+    lignes = serializers.SerializerMethodField()
+
+    def get_lignes(self, obj):
+        retour = []
+        for ligne in obj.get_lignes():
+            if isinstance(ligne, Medicament):
+                ser = MedicamentSerializer(ligne, context=self.context)
+                retour.append(ser.data)
+            elif isinstance(ligne, Conseil):
+                ser = ConseilSerializer(ligne, context=self.context)
+                retour.append(ser.data)
+        return retour
 
     class Meta(ActeSerializer.Meta):
         model = Ordonnance
-        fields = ActeSerializer.Meta.fields + ('medicaments', 'conseils')
+        fields = ActeSerializer.Meta.fields + (
+            'ordre',
+            'lignes',
+        )

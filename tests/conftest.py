@@ -1,8 +1,7 @@
-from django.contrib.auth import get_user_model
-from tests.factories import *
-
 import factory
 import pytest
+from django.contrib.auth import get_user_model
+from tests.factories import *
 
 # from pytest_django.fixtures import db
 
@@ -72,5 +71,6 @@ def observation(db):
 #Ordonnances
 #""""
 @pytest.fixture(autouse=True)
-def ordonnance(db):
-    return FacOrdonnance()
+def medicamentd(db):
+    return factory.build(
+        dict, FACTORY_CLASS=FacMedicament, ordonnance=FacOrdonnance()).copy()

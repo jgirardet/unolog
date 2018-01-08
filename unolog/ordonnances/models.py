@@ -29,11 +29,11 @@ class Ordonnance(BaseActe):
         "Conseil",
     )
 
-    @property
-    def _get_actifs(self):
-        types = []
-        for name in self.TYPE_ACTIFS:
-            yield apps.get_model('ordonnances', name)
+    # @property
+    # def _get_actifs(self):
+    #     types = []
+    #     for name in self.TYPE_ACTIFS:
+    #         yield apps.get_model('ordonnances', name)
 
     def _get_querysets(self):
         #return dict of querysets for different ligne type
@@ -81,17 +81,6 @@ class Ordonnance(BaseActe):
             return self._get_new_ordre(querysets)
         return ordered
 
-    @property
-    def nb_lignes(self):
-        #pour avoir chaque type différent de ligne
-
-        m = self.medicaments.count()
-        c = self.conseils.count()
-        return m + c
-
-    # def update_ordre(self, instance,  new_pos ):
-    #     pass
-
     def __str__(self):
         return str(self.id)
 
@@ -109,20 +98,6 @@ class LigneManager(models.Manager):
         ligne._update_ordre()
         return ligne
 
-    def update_ligne(self, **kwargs):
-        pass
-        #
-        # else:
-        #     #now about update
-        #     ordre = self.ordonnance.ordre.split(";")
-        #     try:
-        #         ordre.remove(self.nom_id)
-        #     except:
-        #         pass
-        #     ordre.insert(self.position, self.nom_id)
-        #     self.ordonnance.ordre = ";".join(ordre)
-        #     super().save(*args, **kwargs)
-
 
 class LigneOrdonnance(models.Model):
     """
@@ -137,12 +112,6 @@ class LigneOrdonnance(models.Model):
         abstract = True
 
     objects = LigneManager()
-
-    def _update_ordre(self):
-        ordo = self.ordonnance
-        ordo.ordre = ";".join((ordo.ordre, self.nom_id))
-        ordo.ordre = ordo.ordre.strip(';')
-        ordo.save()
 
     @property
     def nom_id(self):
@@ -161,6 +130,12 @@ class LigneOrdonnance(models.Model):
         ordo.save()
 
         super().save(*args, **kwargs)
+
+    def _update_ordre(self):
+        ordo = self.ordonnance
+        ordo.ordre = ";".join((ordo.ordre, self.nom_id))
+        ordo.ordre = ordo.ordre.strip(';')
+        ordo.save()
 
 
 class Medicament(LigneOrdonnance):
