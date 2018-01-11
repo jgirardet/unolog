@@ -7,9 +7,14 @@ from .models import Conseil, LigneOrdonnance, Medicament, Ordonnance
 class LigneOrdonnanceSerializer(serializers.HyperlinkedModelSerializer):
     """docstring for LigneOrdonnaceSerializer."""
 
+    ordonnance_id = serializers.IntegerField()
+
     class Meta:
         model = LigneOrdonnance
-        fields = ('url', 'ordonnance')
+        fields = (
+            'url',
+            'ordonnance_id',
+        )
 
     def create(self, validated_data):
         return self.Meta.model.objects.new_ligne(**validated_data)
@@ -19,12 +24,6 @@ class LigneOrdonnanceSerializer(serializers.HyperlinkedModelSerializer):
         validated_data.pop('ordonnance')
 
         return super().update(instance, validated_data)
-
-    def validate_ordonnance(self, data):
-        if self.instance:
-            ordo = self.instance.ordonnance.id
-            return data['ordonnance']
-            raise serializers.ValidationError("finish must occur after start")
 
 
 class MedicamentSerializer(LigneOrdonnanceSerializer):
