@@ -7,13 +7,14 @@ from .models import Conseil, LigneOrdonnance, Medicament, Ordonnance
 class LigneOrdonnanceSerializer(serializers.HyperlinkedModelSerializer):
     """docstring for LigneOrdonnaceSerializer."""
 
-    ordonnance_id = serializers.IntegerField()
+    ordonnance_ = serializers.PrimaryKeyRelatedField(
+        queryset=Ordonnance.objects.all())
 
     class Meta:
         model = LigneOrdonnance
         fields = (
             'url',
-            'ordonnance_id',
+            'ordonnance',
         )
 
     def create(self, validated_data):
