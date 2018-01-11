@@ -7,8 +7,8 @@ from .models import Conseil, LigneOrdonnance, Medicament, Ordonnance
 class LigneOrdonnanceSerializer(serializers.HyperlinkedModelSerializer):
     """docstring for LigneOrdonnaceSerializer."""
 
-    ordonnance_ = serializers.PrimaryKeyRelatedField(
-        queryset=Ordonnance.objects.all())
+    ordonnance = serializers.PrimaryKeyRelatedField(
+        queryset=Ordonnance.objects.all(), write_only=True)
 
     class Meta:
         model = LigneOrdonnance
@@ -18,7 +18,15 @@ class LigneOrdonnanceSerializer(serializers.HyperlinkedModelSerializer):
         )
 
     def create(self, validated_data):
+
         return self.Meta.model.objects.new_ligne(**validated_data)
+"""
+à envisager  :
+ne pas céer de ligne ordo de manière sauvage :
+mauvaise date
+mauvais User
+pour vériier bonne ordo : hash ?
+"""
 
     def update(self, instance, validated_data):
         #ordonnance est read-only
