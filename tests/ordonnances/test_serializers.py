@@ -1,7 +1,8 @@
+from tests.factories import *
+
 import factory
 from ordonnances.models import Medicament
 from ordonnances.serializers import MedicamentSerializer, OrdonnanceSerializer
-from tests.factories import *
 
 
 class TestOrdonnanceSerializer:

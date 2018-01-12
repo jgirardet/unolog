@@ -18,15 +18,14 @@ class LigneOrdonnanceSerializer(serializers.HyperlinkedModelSerializer):
         )
 
     def create(self, validated_data):
-
+        """
+        à envisager  :
+        ne pas céer de ligne ordo de manière sauvage :
+        mauvaise date
+        mauvais User
+        pour vériier bonne ordo : hash ?
+        """
         return self.Meta.model.objects.new_ligne(**validated_data)
-"""
-à envisager  :
-ne pas céer de ligne ordo de manière sauvage :
-mauvaise date
-mauvais User
-pour vériier bonne ordo : hash ?
-"""
 
     def update(self, instance, validated_data):
         #ordonnance est read-only
