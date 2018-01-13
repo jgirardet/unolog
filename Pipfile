@@ -9,6 +9,8 @@ url = "https://pypi.python.org/simple"
 djangorestframework = "*"
 django = "*"
 sortedcontainers = "*"
+"psycopg2" = "*"
+django-environ = "*"
 
 
 [dev-packages]
